@@ -52,7 +52,7 @@ extern "C" SCRIPT_DECL void _exp_script_register(ScriptMgr* mgr)
 
 extern "C" SCRIPT_DECL void _exp_engine_unload()
 {
-	LOG_BASIC("exp_engine_unload was called");
+	LOG_DETAIL("BASIC: exp_engine_unload was called");
 }
 
 extern "C" SCRIPT_DECL void _export_engine_reload()
@@ -89,7 +89,7 @@ void report(lua_State* L)
 	while(count > 0)
 	{
 		const char* msg = lua_tostring(L, -1);
-		LOG_ERROR(msg);
+		LOG_DETAIL(msg);
 		lua_pop(L, 1);
 		count--;
 	}

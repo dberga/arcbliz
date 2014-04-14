@@ -706,7 +706,7 @@ Unit::~Unit()
 	for(std::list<ExtraStrike*>::iterator itx = m_extraStrikeTargets.begin(); itx != m_extraStrikeTargets.end(); ++itx)
 	{
 		ExtraStrike* es = *itx;
-		LOG_ERROR("ExtraStrike added to Unit %u by Spell ID %u wasn't removed when removing the Aura", GetGUID(), es->spell_info->Id);
+		LOG_DETAIL("ERROR: ExtraStrike added to Unit %u by Spell ID %u wasn't removed when removing the Aura", GetGUID(), es->spell_info->Id);
 		delete es;
 	}
 	m_extraStrikeTargets.clear();
@@ -4573,7 +4573,7 @@ void Unit::AddAura(Aura* aur)
 	//check if we can store this aura in some empty slot
 	if(AuraSlot == 0xFFFF)
 	{
-		LOG_ERROR("Aura error in active aura. ");
+		LOG_DETAIL("ERROR: Aura error in active aura. ");
 		sEventMgr.RemoveEvents(aur);
 		delete aur;
 		/*
@@ -5354,7 +5354,7 @@ void Unit::MoveToWaypoint(uint32 wp_id)
 		WayPoint* wp = ai->getWayPoint(wp_id);
 		if(!wp)
 		{
-			LOG_ERROR("WARNING: Invalid WP specified in MoveToWaypoint.");
+			LOG_DETAIL("ERROR: WARNING: Invalid WP specified in MoveToWaypoint.");
 			return;
 		}
 
@@ -7832,9 +7832,9 @@ SpellProc* Unit::AddProcTriggerSpell(SpellEntry* spell, SpellEntry* orig_spell, 
 	if(sp == NULL)
 	{
 		if(orig_spell != NULL)
-			LOG_ERROR("Spell id %u tried to add a non-existent spell to Unit %p as SpellProc", orig_spell->Id, this);
+			LOG_DETAIL("ERROR: Spell id %u tried to add a non-existent spell to Unit %p as SpellProc", orig_spell->Id, this);
 		else
-			LOG_ERROR("Something tried to add a non-existent spell to Unit %p as SpellProc", this);
+			LOG_DETAIL("ERROR: Something tried to add a non-existent spell to Unit %p as SpellProc", this);
 		return NULL;
 	}
 	m_procSpells.push_back(sp);

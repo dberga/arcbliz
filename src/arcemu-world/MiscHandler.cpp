@@ -1088,7 +1088,7 @@ void WorldSession::HandleUpdateAccountData(WorldPacket & recv_data)
 	if(uiID > 8)
 	{
 		// Shit..
-		LOG_ERROR("WARNING: Accountdata > 8 (%d) was requested to be updated by %s of account %d!", uiID, GetPlayer()->GetName(), this->GetAccountId());
+		LOG_DETAIL("ERROR: WARNING: Accountdata > 8 (%d) was requested to be updated by %s of account %d!", uiID, GetPlayer()->GetName(), this->GetAccountId());
 		return;
 	}
 
@@ -1146,13 +1146,13 @@ void WorldSession::HandleUpdateAccountData(WorldPacket & recv_data)
 			case Z_VERSION_ERROR:	   //-6
 				{
 					delete [] data;
-					LOG_ERROR("WORLD WARNING: Decompression of account data %d for %s FAILED.", uiID, GetPlayer()->GetName());
+					LOG_DETAIL("ERROR: WORLD WARNING: Decompression of account data %d for %s FAILED.", uiID, GetPlayer()->GetName());
 					break;
 				}
 
 			default:
 				delete [] data;
-				LOG_ERROR("WORLD WARNING: Decompression gave a unknown error: %x, of account data %d for %s FAILED.", ZlibResult, uiID, GetPlayer()->GetName());
+				LOG_DETAIL("ERROR: WORLD WARNING: Decompression gave a unknown error: %x, of account data %d for %s FAILED.", ZlibResult, uiID, GetPlayer()->GetName());
 				break;
 		}
 	}
@@ -1179,7 +1179,7 @@ void WorldSession::HandleRequestAccountData(WorldPacket & recv_data)
 	if(id > 8)
 	{
 		// Shit..
-		LOG_ERROR("WARNING: Accountdata > 8 (%d) was requested by %s of account %d!", id, GetPlayer()->GetName(), this->GetAccountId());
+		LOG_DETAIL("ERROR: WARNING: Accountdata > 8 (%d) was requested by %s of account %d!", id, GetPlayer()->GetName(), this->GetAccountId());
 		return;
 	}
 
@@ -1202,7 +1202,7 @@ void WorldSession::HandleRequestAccountData(WorldPacket & recv_data)
 
 			if((compress(const_cast<uint8*>(data.contents()) + (sizeof(uint32) * 2), &destsize, (const uint8*)res->data, res->sz)) != Z_OK)
 			{
-				LOG_ERROR("Error while compressing ACCOUNT_DATA");
+				LOG_DETAIL("ERROR: Error while compressing ACCOUNT_DATA");
 				return;
 			}
 
@@ -1832,7 +1832,7 @@ void WorldSession::HandleInspectOpcode(WorldPacket & recv_data)
 
 	if(player == NULL)
 	{
-		LOG_ERROR("HandleInspectOpcode: guid was null");
+		LOG_DETAIL("ERROR: HandleInspectOpcode: guid was null");
 		return;
 	}
 

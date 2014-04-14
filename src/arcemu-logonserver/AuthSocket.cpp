@@ -76,7 +76,7 @@ void AuthSocket::HandleChallenge()
 	// No header
 	if(readBuffer.GetContiguiousBytes() < 4)
 	{
-		LOG_ERROR("[AuthChallenge] Packet has no header. Refusing to handle.");
+		LOG_DETAIL("ERROR: [AuthChallenge] Packet has no header. Refusing to handle.");
 		return;
 	}
 
@@ -90,14 +90,14 @@ void AuthSocket::HandleChallenge()
 
 	if(readBuffer.GetSize() < uint32(full_size + 4))
 	{
-		LOG_ERROR("[AuthChallenge] Packet is smaller than expected, refusing to handle");
+		LOG_DETAIL("ERROR: [AuthChallenge] Packet is smaller than expected, refusing to handle");
 		return;
 	}
 
 	// Copy the data into our cached challenge structure
 	if(full_size > sizeof(sAuthLogonChallenge_C))
 	{
-		LOG_ERROR("[AuthChallenge] Packet is larger than expected, refusing to handle!");
+		LOG_DETAIL("ERROR: [AuthChallenge] Packet is larger than expected, refusing to handle!");
 		Disconnect();
 		return;
 	}
@@ -186,7 +186,7 @@ void AuthSocket::HandleChallenge()
 	string::size_type i = AccountName.rfind("#");
 	if(i != string::npos)
 	{
-		LOG_ERROR("# ACCOUNTNAME!");
+		LOG_DETAIL("ERROR: # ACCOUNTNAME!");
 		return;
 		//AccountName.erase( i );
 	}
@@ -293,7 +293,7 @@ void AuthSocket::HandleProof()
 {
 	if(readBuffer.GetSize() < sizeof(sAuthLogonProof_C))
 	{
-		LOG_ERROR("[AuthLogonProof] The packet received is larger than expected, refusing to handle it!");
+		LOG_DETAIL("ERROR: [AuthLogonProof] The packet received is larger than expected, refusing to handle it!");
 		return ;
 	}
 

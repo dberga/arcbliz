@@ -89,7 +89,7 @@ namespace Arcemu
 
 			if(setcount >= 10)
 			{
-				LOG_ERROR("There were more than 10 equipment sets for GUID: %u", ownerGUID);
+				LOG_DETAIL("ERROR: There were more than 10 equipment sets for GUID: %u", ownerGUID);
 				return true;
 			}
 

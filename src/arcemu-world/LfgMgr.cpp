@@ -32,7 +32,7 @@ LfgMgr::LfgMgr()
 		uint32 typ = lfgdungeon->type;
 
 		if(id >= MAX_DUNGEONS)
-			LOG_ERROR("LFGDungeons contains an out of range dungeon id %u.", id);
+			LOG_DETAIL("ERROR: LFGDungeons contains an out of range dungeon id %u.", id);
 		else
 			LfgDungeonTypes[ id ] = typ;
 	}

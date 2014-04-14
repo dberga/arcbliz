@@ -111,7 +111,7 @@ void WorldSocket::OutPacket(uint16 opcode, size_t len, const void* data)
 	OUTPACKET_RESULT res;
 	if((len + 10) > WORLDSOCKET_SENDBUF_SIZE)
 	{
-		LOG_ERROR("WARNING: Tried to send a packet of %u bytes (which is too large) to a socket. Opcode was: %u (0x%03X)", (unsigned int)len, (unsigned int)opcode, (unsigned int)opcode);
+		LOG_DETAIL("ERROR: WARNING: Tried to send a packet of %u bytes (which is too large) to a socket. Opcode was: %u (0x%03X)", (unsigned int)len, (unsigned int)opcode, (unsigned int)opcode);
 		return;
 	}
 
@@ -495,7 +495,7 @@ void WorldSocket::_HandlePing(WorldPacket* recvPacket)
 	uint32 ping;
 	if(recvPacket->size() < 4)
 	{
-		LOG_ERROR("Socket closed due to incomplete ping packet.");
+		LOG_DETAIL("ERROR: Socket closed due to incomplete ping packet.");
 		Disconnect();
 		return;
 	}

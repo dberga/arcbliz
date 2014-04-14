@@ -296,13 +296,13 @@ void WorldSession::HandleInspectHonorStatsOpcode(WorldPacket & recv_data)
 
 	if(_player->GetMapMgr() == NULL)
 	{
-		LOG_ERROR("HandleInspectHonorStatsOpcode : _player map mgr was null");
+		LOG_DETAIL("ERROR: HandleInspectHonorStatsOpcode : _player map mgr was null");
 		return;
 	}
 
 	if(_player->GetMapMgr()->GetPlayer((uint32)guid) == NULL)
 	{
-		LOG_ERROR("HandleInspectHonorStatsOpcode : guid was null");
+		LOG_DETAIL("ERROR: HandleInspectHonorStatsOpcode : guid was null");
 		return;
 	}
 
@@ -330,7 +330,7 @@ void WorldSession::HandleInspectArenaStatsOpcode(WorldPacket & recv_data)
 	Player* player =  _player->GetMapMgr()->GetPlayer((uint32)guid);
 	if(player == NULL)
 	{
-		LOG_ERROR("HandleInspectHonorStatsOpcode : guid was null");
+		LOG_DETAIL("ERROR: HandleInspectHonorStatsOpcode : guid was null");
 		return;
 	}
 

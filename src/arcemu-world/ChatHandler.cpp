@@ -164,7 +164,7 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket & recv_data)
 			pMsg = msg.c_str();
 			break;
 		default:
-			LOG_ERROR("CHAT: unknown msg type %u, lang: %u", type, lang);
+			LOG_DETAIL("ERROR: CHAT: unknown msg type %u, lang: %u", type, lang);
 	}
 
 

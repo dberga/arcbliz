@@ -1422,7 +1422,7 @@ void World::Rehash(bool load)
 	map_unload_time = Config.MainConfig.GetIntDefault("Server", "MapUnloadTime", MAP_CELL_DEFAULT_UNLOAD_TIME);
 	if(map_unload_time == 0)
 	{
-		LOG_ERROR("MapUnloadTime is set to 0. This will NEVER unload MapCells!!! Overriding it to default value of %u", MAP_CELL_DEFAULT_UNLOAD_TIME);
+		LOG_DETAIL("ERROR: MapUnloadTime is set to 0. This will NEVER unload MapCells!!! Overriding it to default value of %u", MAP_CELL_DEFAULT_UNLOAD_TIME);
 		map_unload_time = MAP_CELL_DEFAULT_UNLOAD_TIME;
 	}
 
@@ -1664,7 +1664,7 @@ void World::AnnounceColorChooser(int tagcolor, int gmtagcolor, int namecolor, in
 			ann_msgcolor = "|cffffff00"; //yellow
 			break;
 	}
-	LOG_BASIC("Announce colors initialized.");
+	LOG_DETAIL("BASIC: Announce colors initialized.");
 }
 
 void World::LoadAccountDataProc(QueryResultVector & results, uint32 AccountId)

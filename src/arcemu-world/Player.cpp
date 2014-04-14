@@ -494,7 +494,7 @@ Player::~Player()
 
 	if(!ok_to_remove)
 	{
-		LOG_ERROR("Player deleted from non-logoutplayer!");
+		LOG_DETAIL("ERROR: Player deleted from non-logoutplayer!");
 		printStackTrace(); // Win32 Debug
 
 		objmgr.RemovePlayer(this);
@@ -666,9 +666,9 @@ bool Player::Create(WorldPacket & data)
 		m_session->Disconnect();
 		// don't use Log.LargeErrorMessage() here, it doesn't handle %s %u in the string.
 		if(class_ == DEATHKNIGHT)
-			LOG_ERROR("Account Name: %s tried to create a deathknight, however your playercreateinfo table does not support this class, please update your database.", m_session->GetAccountName().c_str());
+			LOG_DETAIL("ERROR: Account Name: %s tried to create a deathknight, however your playercreateinfo table does not support this class, please update your database.", m_session->GetAccountName().c_str());
 		else
-			LOG_ERROR("Account Name: %s tried to create an invalid character with race %u and class %u, if this is intended please update your playercreateinfo table inside your database.", m_session->GetAccountName().c_str(), race, class_);
+			LOG_DETAIL("ERROR: Account Name: %s tried to create an invalid character with race %u and class %u, if this is intended please update your playercreateinfo table inside your database.", m_session->GetAccountName().c_str(), race, class_);
 		return false;
 	}
 
@@ -1204,7 +1204,7 @@ void Player::_EventCharmAttack()
 	//Can't find victim, stop attacking
 	if(!pVictim)
 	{
-		LOG_ERROR("WORLD: " I64FMT " doesn't exist.", m_curSelection);
+		LOG_DETAIL("ERROR: WORLD: " I64FMT " doesn't exist.", m_curSelection);
 		LOG_DETAIL("Player::Update:  No valid current selection to attack, stopping attack");
 		this->setHRegenTimer(5000); //prevent clicking off creature for a quick heal
 		clearStateFlag(UF_ATTACKING);
@@ -1808,9 +1808,9 @@ void Player::_SavePet(QueryBuffer* buf)
 			for(; itr != summon->mSpells.end(); ++itr)
 			{
 				if(buf == NULL)
-					CharacterDatabase.Execute("INSERT INTO playerpetspells VALUES(%u, %u, %u, %u)", GetLowGUID(), pn, itr->first->Id, itr->second);
+					CharacterDatabase.Execute("REPLACE INTO playerpetspells VALUES(%u, %u, %u, %u)", GetLowGUID(), pn, itr->first->Id, itr->second);
 				else
-					buf->AddQuery("INSERT INTO playerpetspells VALUES(%u, %u, %u, %u)", GetLowGUID(), pn, itr->first->Id, itr->second);
+					buf->AddQuery("REPLACE INTO playerpetspells VALUES(%u, %u, %u, %u)", GetLowGUID(), pn, itr->first->Id, itr->second);
 			}
 		}
 	}
@@ -1823,7 +1823,7 @@ void Player::_SavePet(QueryBuffer* buf)
 	{
 		ss.rdbuf()->str("");
 
-		ss << "INSERT INTO playerpets VALUES('"
+		ss << "REPLACE INTO playerpets VALUES('"
 		   << GetLowGUID() << "','"
 		   << itr->second->number << "','"
 		   << itr->second->name << "','"
@@ -1868,9 +1868,9 @@ void Player::_SavePetSpells(QueryBuffer* buf)
 		for(; it != itr->second.end(); ++it)
 		{
 			if(buf == NULL)
-				CharacterDatabase.Execute("INSERT INTO playersummonspells VALUES(%u, %u, %u)", GetLowGUID(), itr->first, (*it));
+				CharacterDatabase.Execute("REPLACE INTO playersummonspells VALUES(%u, %u, %u)", GetLowGUID(), itr->first, (*it));
 			else
-				buf->AddQuery("INSERT INTO playersummonspells VALUES(%u, %u, %u)", GetLowGUID(), itr->first, (*it));
+				buf->AddQuery("REPLACE INTO playersummonspells VALUES(%u, %u, %u)", GetLowGUID(), itr->first, (*it));
 		}
 	}
 }
@@ -1961,7 +1961,7 @@ void Player::SpawnPet(uint32 pet_number)
 	std::map< uint32, PlayerPet* >::iterator itr = m_Pets.find(pet_number);
 	if(itr == m_Pets.end())
 	{
-		LOG_ERROR("PET SYSTEM: " I64FMT " Tried to load invalid pet %d", GetGUID(), pet_number);
+		LOG_DETAIL("ERROR: PET SYSTEM: " I64FMT " Tried to load invalid pet %d", GetGUID(), pet_number);
 		return;
 	}
 	Pet* pPet = objmgr.CreatePet(itr->second->entry);
@@ -2765,7 +2765,7 @@ void Player::LoadFromDBProc(QueryResultVector & results)
 	if(!myClass || !myRace)
 	{
 		// bad character
-		LOG_ERROR("guid %u failed to login, no race or class dbc found. (race %u class %u)", (unsigned int)GetLowGUID(), (unsigned int)getRace(), (unsigned int)getClass());
+		LOG_DETAIL("ERROR: guid %u failed to login, no race or class dbc found. (race %u class %u)", (unsigned int)GetLowGUID(), (unsigned int)getRace(), (unsigned int)getClass());
 		RemovePendingPlayer();
 		return;
 	}
@@ -2789,7 +2789,7 @@ void Player::LoadFromDBProc(QueryResultVector & results)
 	info = objmgr.GetPlayerCreateInfo(getRace(), getClass());
 	if(!info)
 	{
-		LOG_ERROR("player guid %u has no playerCreateInfo!", (unsigned int)GetLowGUID());
+		LOG_DETAIL("ERROR: player guid %u has no playerCreateInfo!", (unsigned int)GetLowGUID());
 		RemovePendingPlayer();
 		return;
 	}
@@ -2802,7 +2802,7 @@ void Player::LoadFromDBProc(QueryResultVector & results)
 
 	if(!lvlinfo)
 	{
-		LOG_ERROR("guid %u level %u class %u race %u levelinfo not found!", (unsigned int)GetLowGUID(), (unsigned int)getLevel(), (unsigned int)getClass(), (unsigned int)getRace());
+		LOG_DETAIL("ERROR: guid %u level %u class %u race %u levelinfo not found!", (unsigned int)GetLowGUID(), (unsigned int)getLevel(), (unsigned int)getClass(), (unsigned int)getRace());
 		RemovePendingPlayer();
 		return;
 	}
@@ -3938,7 +3938,7 @@ void Player::_ApplyItemMods(Item* item, int16 slot, bool apply, bool justdrokedo
 		ItemSetEntry* set = dbcItemSet.LookupEntryForced(setid);
 		if(set == NULL)
 		{
-			LOG_ERROR("Item %u has wrong ItemSet %u", proto->ItemId, setid);
+			LOG_DETAIL("ERROR: Item %u has wrong ItemSet %u", proto->ItemId, setid);
 		}
 		else
 		{
@@ -7536,7 +7536,7 @@ bool Player::CompressAndSendUpdateBuffer(uint32 size, const uint8* update_buffer
 
 	if(deflateInit(&stream, rate) != Z_OK)
 	{
-		LOG_ERROR("deflateInit failed.");
+		LOG_DETAIL("ERROR: deflateInit failed.");
 		return false;
 	}
 
@@ -7553,7 +7553,7 @@ bool Player::CompressAndSendUpdateBuffer(uint32 size, const uint8* update_buffer
 	if(deflate(&stream, Z_NO_FLUSH) != Z_OK ||
 	        stream.avail_in != 0)
 	{
-		LOG_ERROR("deflate failed.");
+		LOG_DETAIL("ERROR: deflate failed.");
 		delete [] buffer;
 		return false;
 	}
@@ -7561,7 +7561,7 @@ bool Player::CompressAndSendUpdateBuffer(uint32 size, const uint8* update_buffer
 	// finish the deflate
 	if(deflate(&stream, Z_FINISH) != Z_STREAM_END)
 	{
-		LOG_ERROR("deflate failed: did not end stream");
+		LOG_DETAIL("ERROR: deflate failed: did not end stream");
 		delete [] buffer;
 		return false;
 	}
@@ -7569,7 +7569,7 @@ bool Player::CompressAndSendUpdateBuffer(uint32 size, const uint8* update_buffer
 	// finish up
 	if(deflateEnd(&stream) != Z_OK)
 	{
-		LOG_ERROR("deflateEnd failed.");
+		LOG_DETAIL("ERROR: deflateEnd failed.");
 		delete [] buffer;
 		return false;
 	}
@@ -8866,7 +8866,7 @@ void Player::CalculateBaseStats()
 	LevelInfo* levelone = objmgr.GetLevelInfo(this->getRace(), this->getClass(), 1);
 	if(levelone == NULL)
 	{
-		LOG_ERROR("%s (%d): NULL pointer", __FUNCTION__, __LINE__);
+		LOG_DETAIL("ERROR: %s (%d): NULL pointer", __FUNCTION__, __LINE__);
 		return;
 	}
 	SetMaxHealth(lvlinfo->HP);
@@ -10721,7 +10721,7 @@ void Player::EventDumpCompressedMovement()
 
 	if(deflateInit(&stream, rate) != Z_OK)
 	{
-		LOG_ERROR("deflateInit failed.");
+		LOG_DETAIL("ERROR: deflateInit failed.");
 		m_movementBufferLock.Release();
 		return;
 	}
@@ -10738,7 +10738,7 @@ void Player::EventDumpCompressedMovement()
 	if(deflate(&stream, Z_NO_FLUSH) != Z_OK ||
 	        stream.avail_in != 0)
 	{
-		LOG_ERROR("deflate failed.");
+		LOG_DETAIL("ERROR: deflate failed.");
 		delete [] buffer;
 		m_movementBufferLock.Release();
 		return;
@@ -10747,7 +10747,7 @@ void Player::EventDumpCompressedMovement()
 	// finish the deflate
 	if(deflate(&stream, Z_FINISH) != Z_STREAM_END)
 	{
-		LOG_ERROR("deflate failed: did not end stream");
+		LOG_DETAIL("ERROR: deflate failed: did not end stream");
 		delete [] buffer;
 		m_movementBufferLock.Release();
 		return;
@@ -10756,7 +10756,7 @@ void Player::EventDumpCompressedMovement()
 	// finish up
 	if(deflateEnd(&stream) != Z_OK)
 	{
-		LOG_ERROR("deflateEnd failed.");
+		LOG_DETAIL("ERROR: deflateEnd failed.");
 		delete [] buffer;
 		m_movementBufferLock.Release();
 		return;
@@ -11055,12 +11055,12 @@ void Player::_SavePlayerCooldowns(QueryBuffer* buf)
 
 			if(buf != NULL)
 			{
-				buf->AddQuery("INSERT INTO playercooldowns VALUES(%u, %u, %u, %u, %u, %u)", GetLowGUID(),
+				buf->AddQuery("REPLACE INTO playercooldowns VALUES(%u, %u, %u, %u, %u, %u)", GetLowGUID(),
 				              i, itr2->first, seconds + (uint32)UNIXTIME, itr2->second.SpellId, itr2->second.ItemId);
 			}
 			else
 			{
-				CharacterDatabase.Execute("INSERT INTO playercooldowns VALUES(%u, %u, %u, %u, %u, %u)", GetLowGUID(),
+				CharacterDatabase.Execute("REPLACE INTO playercooldowns VALUES(%u, %u, %u, %u, %u, %u)", GetLowGUID(),
 				                          i, itr2->first, seconds + (uint32)UNIXTIME, itr2->second.SpellId, itr2->second.ItemId);
 			}
 		}
@@ -11528,7 +11528,7 @@ uint32 Player::GetMaxPersonalRating()
 			}
 			else
 			{
-				LOG_ERROR("%s: GetMemberByGuid returned NULL for player guid = %u", __FUNCTION__, m_playerInfo->guid);
+				LOG_DETAIL("ERROR: %s: GetMemberByGuid returned NULL for player guid = %u", __FUNCTION__, m_playerInfo->guid);
 			}
 		}
 	}
@@ -13657,7 +13657,7 @@ bool Player::CanBuyAt(VendorRestrictionEntry* vendor)
 		}
 		else
 		{
-			LOG_ERROR("VendorRestrictions: Mount vendor specified, but not enough info for creature %u", vendor->entry);
+			LOG_DETAIL("ERROR: VendorRestrictions: Mount vendor specified, but not enough info for creature %u", vendor->entry);
 		}
 	}
 
@@ -13691,12 +13691,12 @@ void Player::BuildPetSpellList(WorldPacket & data)
 
 void Player::AddVehicleComponent( uint32 creature_entry, uint32 vehicleid ){
 	if( mountvehicleid == 0 ){
-		LOG_ERROR( "Tried to add a vehicle component with 0 as vehicle id for player %u ( %s )", GetLowGUID(), GetName() );
+		LOG_DETAIL("ERROR: Tried to add a vehicle component with 0 as vehicle id for player %u ( %s )", GetLowGUID(), GetName() );
 		return;
 	}
 
 	if( vehicle != NULL ){
-		LOG_ERROR( "Tried to add a vehicle component, but there's already one for player %u ( %s )", GetLowGUID(), GetName() );
+		LOG_DETAIL("ERROR: Tried to add a vehicle component, but there's already one for player %u ( %s )", GetLowGUID(), GetName() );
 		return;
 	}
 	

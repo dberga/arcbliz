@@ -129,7 +129,7 @@ void WorldSession::HandleUseItemOpcode(WorldPacket & recvPacket)
 	SpellEntry* spellInfo = dbcSpell.LookupEntryForced(spellId);
 	if(spellInfo == NULL)
 	{
-		LOG_ERROR("WORLD: unknown spell id %i", spellId);
+		LOG_DETAIL("ERROR: WORLD: unknown spell id %i", spellId);
 		return;
 	}
 
@@ -283,7 +283,7 @@ void WorldSession::HandleSpellClick(WorldPacket & recvPacket)
 				Creature *c = TO< Creature* >( target_unit );
 				
 				sChatHandler.BlueSystemMessage( this, "NPC Id %u ( %s ) has no spellclick spell associated with it.", c->GetProto()->Id, c->GetCreatureInfo()->Name  );
-				LOG_ERROR("Spellclick packet received for creature %u but there is no spell associated with it.", creature_id );
+				LOG_DETAIL("ERROR: Spellclick packet received for creature %u but there is no spell associated with it.", creature_id );
 				return;
 			}
 		}
@@ -304,7 +304,7 @@ void WorldSession::HandleSpellClick(WorldPacket & recvPacket)
 			Creature *c = TO< Creature* >( target_unit );
 
 			sChatHandler.BlueSystemMessage( this, "NPC Id %u ( %s ) has no spellclick spell associated with it.", c->GetProto()->Id, c->GetCreatureInfo()->Name  );
-			LOG_ERROR("Spellclick packet received for creature %u but there is no spell associated with it.", creature_id );
+			LOG_DETAIL("ERROR: Spellclick packet received for creature %u but there is no spell associated with it.", creature_id );
 			return;
 		}
 	}
@@ -335,7 +335,7 @@ void WorldSession::HandleCastSpellOpcode(WorldPacket & recvPacket)
 
 	if(!spellInfo)
 	{
-		LOG_ERROR("WORLD: unknown spell id %i", spellId);
+		LOG_DETAIL("ERROR: WORLD: unknown spell id %i", spellId);
 		return;
 	}
 
@@ -630,7 +630,7 @@ void WorldSession::HandleCancelTotem(WorldPacket & recv_data)
 
 	if(slot >= UNIT_SUMMON_SLOTS)
 	{
-		LOG_ERROR("Player %u %s tried to cancel a summon at slot %u, slot number is out of range. ( tried to crash the server? )", _player->GetLowGUID(), _player->GetName(), slot);
+		LOG_DETAIL("ERROR: Player %u %s tried to cancel a summon at slot %u, slot number is out of range. ( tried to crash the server? )", _player->GetLowGUID(), _player->GetName(), slot);
 		return;
 	}
 

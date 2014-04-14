@@ -2780,7 +2780,7 @@ void Spell::HandleEffects(uint64 guid, uint32 i)
 					corpseTarget = objmgr.GetCorpse(GET_LOWGUID_PART(guid));
 					break;
 				default:
-					LOG_ERROR("unitTarget not set");
+					LOG_DETAIL("ERROR: unitTarget not set");
 					DecRef();
 					return;
 			}
@@ -2820,7 +2820,7 @@ void Spell::HandleEffects(uint64 guid, uint32 i)
 		(*this.*SpellEffectsHandler[id])(i);
 	}
 	else
-		LOG_ERROR("SPELL: unknown effect %u spellid %u", id, GetProto()->Id);
+		LOG_DETAIL("ERROR: SPELL: unknown effect %u spellid %u", id, GetProto()->Id);
 
 	DoAfterHandleEffect(unitTarget, i);
 	DecRef();
@@ -3020,7 +3020,7 @@ void Spell::TriggerSpell()
 
 		if(!spellInfo)
 		{
-			LOG_ERROR("WORLD: unknown spell id %i\n", TriggerSpellId);
+			LOG_DETAIL("ERROR: WORLD: unknown spell id %i\n", TriggerSpellId);
 			return;
 		}
 
@@ -4958,7 +4958,7 @@ void Spell::HandleTeleport(float x, float y, float z, uint32 mapid, Unit* Target
 	{
 		if(mapid != Target->GetMapId())
 		{
-			LOG_ERROR("Tried to teleport a Creature to another map.");
+			LOG_DETAIL("ERROR: Tried to teleport a Creature to another map.");
 			return;
 		}
 
@@ -5774,7 +5774,7 @@ uint8 Spell::GetErrorAtShapeshiftedCast(SpellEntry* spellInfo, uint32 form)
 		SpellShapeshiftForm* ssf = dbcSpellShapeshiftForm.LookupEntryForced(form);
 		if(!ssf)
 		{
-			LOG_ERROR("GetErrorAtShapeshiftedCast: unknown shapeshift %u", form);
+			LOG_DETAIL("ERROR: GetErrorAtShapeshiftedCast: unknown shapeshift %u", form);
 			return 0;
 		}
 

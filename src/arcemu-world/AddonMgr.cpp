@@ -140,7 +140,7 @@ void AddonMgr::SendAddonInfoPacket(WorldPacket* source, uint32 pos, WorldSession
 
 	if(result != Z_OK)
 	{
-		LOG_ERROR("Decompression of addon section of CMSG_AUTH_SESSION failed.");
+		LOG_DETAIL("ERROR: Decompression of addon section of CMSG_AUTH_SESSION failed.");
 		return;
 	}
 
@@ -253,7 +253,7 @@ void AddonMgr::LoadFromDB()
 	QueryResult* result = WorldDatabase.Query("SELECT * FROM clientaddons");
 	if(!result)
 	{
-		LOG_ERROR("Query failed: SELECT * FROM clientaddons");
+		LOG_DETAIL("ERROR: Query failed: SELECT * FROM clientaddons");
 		return;
 	}
 

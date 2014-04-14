@@ -98,7 +98,7 @@ bool GameObject::CreateFromProto(uint32 entry, uint32 mapid, float x, float y, f
 	pInfo = GameObjectNameStorage.LookupEntry(entry);
 	if(pInfo == NULL)
 	{
-		LOG_ERROR("Something tried to create a GameObject with invalid entry %u", entry);
+		LOG_DETAIL("ERROR: Something tried to create a GameObject with invalid entry %u", entry);
 		return false;
 	}
 
@@ -384,7 +384,7 @@ void GameObject::InitAI()
 			GameObjectInfo* gi = GameObjectNameStorage.LookupEntry(pInfo->sound2);
 			if(gi == NULL)
 			{
-				LOG_ERROR("Gamobject %u is of spellfocus type, has attachment GO data ( %u ), but attachment not found in database.", pInfo->ID, pInfo->sound2);
+				LOG_DETAIL("ERROR: Gamobject %u is of spellfocus type, has attachment GO data ( %u ), but attachment not found in database.", pInfo->ID, pInfo->sound2);
 				return;
 			}
 
@@ -515,7 +515,7 @@ void GameObject::UseFishingNode(Player* player)
 	FishingZoneEntry* entry = FishingZoneStorage.LookupEntry(zone);
 	if(entry == NULL)   // No fishing information found for area or zone, log an error, and end fishing
 	{
-		LOG_ERROR("ERROR: Fishing zone information for zone %d not found!", zone);
+		LOG_DETAIL("ERROR: ERROR: Fishing zone information for zone %d not found!", zone);
 		EndFishing(player, true);
 		return;
 	}

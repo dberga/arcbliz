@@ -1102,7 +1102,7 @@ void QuestMgr::OnQuestFinished(Player* plr, Quest* qst, Object* qst_giver, uint3
 				ItemPrototype* proto = ItemPrototypeStorage.LookupEntry(qst->reward_item[i]);
 				if(!proto)
 				{
-					LOG_ERROR("Invalid item prototype in quest reward! ID %d, quest %d", qst->reward_item[i], qst->id);
+					LOG_DETAIL("ERROR: Invalid item prototype in quest reward! ID %d, quest %d", qst->reward_item[i], qst->id);
 				}
 				else
 				{
@@ -1142,7 +1142,7 @@ void QuestMgr::OnQuestFinished(Player* plr, Quest* qst, Object* qst_giver, uint3
 			ItemPrototype* proto = ItemPrototypeStorage.LookupEntry(qst->reward_choiceitem[reward_slot]);
 			if(!proto)
 			{
-				LOG_ERROR("Invalid item prototype in quest reward! ID %d, quest %d", qst->reward_choiceitem[reward_slot], qst->id);
+				LOG_DETAIL("ERROR: Invalid item prototype in quest reward! ID %d, quest %d", qst->reward_choiceitem[reward_slot], qst->id);
 			}
 			else
 			{
@@ -1219,7 +1219,7 @@ void QuestMgr::OnQuestFinished(Player* plr, Quest* qst, Object* qst_giver, uint3
 				ItemPrototype* proto = ItemPrototypeStorage.LookupEntry(qst->reward_item[i]);
 				if(!proto)
 				{
-					LOG_ERROR("Invalid item prototype in quest reward! ID %d, quest %d", qst->reward_item[i], qst->id);
+					LOG_DETAIL("ERROR: Invalid item prototype in quest reward! ID %d, quest %d", qst->reward_item[i], qst->id);
 				}
 				else
 				{
@@ -1259,7 +1259,7 @@ void QuestMgr::OnQuestFinished(Player* plr, Quest* qst, Object* qst_giver, uint3
 			ItemPrototype* proto = ItemPrototypeStorage.LookupEntry(qst->reward_choiceitem[reward_slot]);
 			if(!proto)
 			{
-				LOG_ERROR("Invalid item prototype in quest reward! ID %d, quest %d", qst->reward_choiceitem[reward_slot], qst->id);
+				LOG_DETAIL("ERROR: Invalid item prototype in quest reward! ID %d, quest %d", qst->reward_choiceitem[reward_slot], qst->id);
 			}
 			else
 			{
@@ -1708,7 +1708,7 @@ void QuestMgr::SetGameObjectLootQuest(uint32 GO_Entry, uint32 Item_Entry)
 {
 	if(m_ObjectLootQuestList.find(GO_Entry) != m_ObjectLootQuestList.end())
 	{
-		//LOG_ERROR("WARNING: Gameobject %d has more than 1 quest item allocated in it's loot template!", GO_Entry);
+		//LOG_DETAIL("ERROR: WARNING: Gameobject %d has more than 1 quest item allocated in it's loot template!", GO_Entry);
 	}
 
 	// Find the quest that has that item
@@ -1733,7 +1733,7 @@ void QuestMgr::SetGameObjectLootQuest(uint32 GO_Entry, uint32 Item_Entry)
 	}
 	itr->Destruct();
 
-	//LOG_ERROR("WARNING: No coresponding quest was found for quest item %d", Item_Entry);
+	//LOG_DETAIL("ERROR: WARNING: No coresponding quest was found for quest item %d", Item_Entry);
 }
 
 void QuestMgr::BuildQuestFailed(WorldPacket* data, uint32 questid)
@@ -1917,7 +1917,7 @@ bool QuestMgr::CanStoreReward(Player* plyr, Quest* qst, uint32 reward_slot)
 			slotsrequired++;
 			ItemPrototype* proto = ItemPrototypeStorage.LookupEntry(qst->reward_item[i]);
 			if(!proto)
-				LOG_ERROR("Invalid item prototype in quest reward! ID %d, quest %d", qst->reward_item[i], qst->id);
+				LOG_DETAIL("ERROR: Invalid item prototype in quest reward! ID %d, quest %d", qst->reward_item[i], qst->id);
 			else if(plyr->GetItemInterface()->CanReceiveItem(proto, qst->reward_itemcount[i]))
 				return false;
 		}
@@ -1929,7 +1929,7 @@ bool QuestMgr::CanStoreReward(Player* plyr, Quest* qst, uint32 reward_slot)
 		slotsrequired++;
 		ItemPrototype* proto = ItemPrototypeStorage.LookupEntry(qst->reward_choiceitem[reward_slot]);
 		if(!proto)
-			LOG_ERROR("Invalid item prototype in quest reward! ID %d, quest %d", qst->reward_choiceitem[reward_slot], qst->id);
+			LOG_DETAIL("ERROR: Invalid item prototype in quest reward! ID %d, quest %d", qst->reward_choiceitem[reward_slot], qst->id);
 		else if(plyr->GetItemInterface()->CanReceiveItem(proto, qst->reward_choiceitemcount[reward_slot]))
 			return false;
 	}

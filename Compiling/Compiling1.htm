@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<!-- saved from url=(0076)http://arcemu.org/wiki/Generating_the_Arcemu_build_files_using_the_CMake_GUI -->
+<html lang="en" dir="ltr" class="client-chrome client-chrome-3 client-webkit client-win"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Generating the Arcemu build files using the CMake GUI - ArcEmu-Wiki</title>
+<meta name="generator" content="MediaWiki 1.17.0beta1">
+<link rel="shortcut icon" href="http://arcemu.org/wiki/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="http://arcemu.org/wiki/opensearch_desc.php" title="ArcEmu-Wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="http://arcemu.org/wiki/api.php?action=rsd">
+<link title="Creative Commons" type="application/rdf+xml" href="http://arcemu.org/wiki/index.php?title=Generating_the_Arcemu_build_files_using_the_CMake_GUI&action=creativecommons" rel="meta">
+<link rel="copyright" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">
+<link rel="alternate" type="application/atom+xml" title="ArcEmu-Wiki Atom feed" href="http://arcemu.org/wiki/index.php?title=Special:RecentChanges&feed=atom">
+<link rel="stylesheet" href="http://arcemu.org/wiki/load.php?debug=false&lang=en&modules=mediawiki.legacy.commonPrint%7Cmediawiki.legacy.shared&only=styles&skin=monobook">
+<link rel="stylesheet" href="http://arcemu.org/wiki/skins/monobook/main.css?301" media="screen">
+<!--[if lt IE 5.5000]><link rel="stylesheet" href="/wiki/skins/monobook/IE50Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 5.5000]><link rel="stylesheet" href="/wiki/skins/monobook/IE55Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/monobook/IE60Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/monobook/IE70Fixes.css?301" media="screen" /><![endif]--><meta name="ResourceLoaderDynamicStyles" content=""><link rel="stylesheet" href="http://arcemu.org/wiki/load.php?debug=false&lang=en&modules=site&only=styles&skin=monobook">
+<link rel="stylesheet" href="http://arcemu.org/wiki/load.php?debug=false&lang=en&modules=site&only=styles&skin=monobook">
+<link rel="stylesheet" href="http://arcemu.org/wiki/load.php?debug=false&lang=en&modules=site&only=styles&skin=monobook">
+
+<style type="text/css"></style></head>
+<body class="mediawiki ltr ns-0 ns-subject page-Generating_the_Arcemu_build_files_using_the_CMake_GUI skin-monobook">
+<div id="globalWrapper">
+<div id="column-content"><div id="content">
+	<a id="top"></a>
+	
+	<h1 id="firstHeading" class="firstHeading">Generating the Arcemu build files using the CMake GUI</h1>
+	<div id="bodyContent">
+		<div id="siteSub">From ArcEmu-Wiki</div>
+		<div id="contentSub"></div>
+		<div id="jump-to-nav">Jump to: <a href="http://arcemu.org/wiki/Generating_the_Arcemu_build_files_using_the_CMake_GUI#column-one">navigation</a>, <a href="http://arcemu.org/wiki/Generating_the_Arcemu_build_files_using_the_CMake_GUI#searchInput">search</a></div>
+		<!-- start content -->
+<table style="width:100%; margin:0px; border:1px solid #aaa; background-color:#f9f9f9; font-size:smaller;">
+<caption style="margin-top:-0.5em;"><span style="float:right;"><a href="http://arcemu.org/wiki/Template:LanguageLinks" title="Template:LanguageLinks">+/-</a></span>
+</caption>
+<tbody><tr>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+</td>
+<td><b><a href="http://arcemu.org/wiki/Main_Page" title="Main Page">Main Page</a></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Other languages:</b>&nbsp;&nbsp;&nbsp;<strong class="selflink">English</strong>&nbsp; • &nbsp; <a href="http://arcemu.org/wiki/DE:Generating_the_Arcemu_build_files_using_the_CMake_GUI" title="DE:Generating the Arcemu build files using the CMake GUI">German</a> &nbsp;  • &nbsp; <a href="http://arcemu.org/wiki/index.php?title=FR:Generating_the_Arcemu_build_files_using_the_CMake_GUI&action=edit&redlink=1" class="new" title="FR:Generating the Arcemu build files using the CMake GUI (page does not exist)">French</a><span style="float:right;"><a href="http://arcemu.org/" class="external text" rel="nofollow">ArcEmu Website</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://arcemu.org/forums" class="external text" rel="nofollow">ArcEmu Forum</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/arcemu/arcemu/issues" class="external text" rel="nofollow">Bug Tracker</a></span>
+</td></tr></tbody></table>
+<p><br>
+</p>
+<ul><li> Find and start the CMake GUI
+</li><li> On startup you will see an image like this:
+</li></ul>
+<p><br>
+<img src="./Compiling1_files/201108170017.jpg" alt="201108170017.jpg">
+</p><p><br>
+</p>
+<ul><li> Type in the path to the "cmake" sub-directory of your Arcemu checkout to the "Where is the sourecode" field, or click "Browse source" button and find it using the file browser dialog.
+</li><li> Type in the path to the directory where you will build in to the "Where to build the binaries" field, or click the "Browse Build" button and find or create it using the file browser dialog.
+</li><li> Click the "Configure" button, and you will see
+</li></ul>
+<p><br>
+<img src="./Compiling1_files/201108170018.jpg" alt="201108170018.jpg">
+</p><p><br>
+</p>
+<table class="notice notice-note noprint" style="background: #f2fff2; border: solid 1px #bfffbf; padding: 0.5em; width: 95%; margin: auto; vertical-align: top; -moz-border-radius:10px;">
+<tbody><tr>
+<td>
+<p><b>NOTE:</b><br>
+CMake tries to identify your build environment, and choose a compiler for you. If it's the wrong one,
+you can of course choose another one that is supported by CMake.
+</p>
+</td></tr></tbody></table>
+<ul><li> Choose the compiler you want to build Arcemu with.
+</li></ul>
+<table class="notice notice-note noprint" style="background: #f2fff2; border: solid 1px #bfffbf; padding: 0.5em; width: 95%; margin: auto; vertical-align: top; -moz-border-radius:10px;">
+<tbody><tr>
+<td>
+<p><b>NOTE:</b><br>
+Most people will want to choose Visual Studio 2008 or 2010 for Windows, and Unix Makefiles for Linux/FreeBSD or OS X.
+</p>
+</td></tr></tbody></table>
+<ul><li> Click "Finish"
+</li></ul>
+<p><br>
+<img src="./Compiling1_files/201108170020.jpg" alt="201108170020.jpg">
+</p>
+<table class="notice notice-note noprint" style="background: #f2fff2; border: solid 1px #bfffbf; padding: 0.5em; width: 95%; margin: auto; vertical-align: top; -moz-border-radius:10px;">
+<tbody><tr>
+<td>
+<p><b>NOTE:</b><br>
+CMake will work a bit, but eventually presents you the screen where you can select which features you want to build.
+</p>
+</td></tr></tbody></table>
+<table class="notice notice-note noprint" style="background: #f2fff2; border: solid 1px #bfffbf; padding: 0.5em; width: 95%; margin: auto; vertical-align: top; -moz-border-radius:10px;">
+<tbody><tr>
+<td>
+<p><b>NOTE:</b><br>
+If you have lots of red error text ( warnings are not errors ) in the textbox, that might mean you don't have all the requirements installed.
+</p>
+</td></tr></tbody></table>
+<table class="notice notice-note noprint" style="background: #f2fff2; border: solid 1px #bfffbf; padding: 0.5em; width: 95%; margin: auto; vertical-align: top; -moz-border-radius:10px;">
+<tbody><tr>
+<td>
+<p><b>NOTE:</b><br>
+If you are sure you do have them all, or the error is not related, post a new topic on forums asking for help!
+</p>
+</td></tr></tbody></table>
+<ul><li> Select the features you want to build.
+</li><li> Find the "CMAKE_INSTALL_PREFIX" option, and edit it. Fill in the path to the directory where you want to install Arcemu.
+</li></ul>
+<table class="notice notice-note noprint" style="background: #f2fff2; border: solid 1px #bfffbf; padding: 0.5em; width: 95%; margin: auto; vertical-align: top; -moz-border-radius:10px;">
+<tbody><tr>
+<td>
+<p><b>NOTE:</b><br>
+If you are a beginner, unsure or you don't care where it's installed then on Windows you could try "C:/Arcemu",
+and on Unix you could use "/home/name/arcemu. Where "name" is your login name / login id.
+</p>
+</td></tr></tbody></table>
+<table class="notice notice-note noprint" style="background: #f2fff2; border: solid 1px #bfffbf; padding: 0.5em; width: 95%; margin: auto; vertical-align: top; -moz-border-radius:10px;">
+<tbody><tr>
+<td>
+<p><b>NOTE:</b><br>
+For the sake of example, I set CMAKE_INSTALL_PREFIX to C:/Arcemu
+</p>
+</td></tr></tbody></table>
+<table class="notice notice-note noprint" style="background: #f2fff2; border: solid 1px #bfffbf; padding: 0.5em; width: 95%; margin: auto; vertical-align: top; -moz-border-radius:10px;">
+<tbody><tr>
+<td>
+<p><b>NOTE:</b><br>
+For most people the other default options are fine.
+</p>
+</td></tr></tbody></table>
+<p><br>
+<img src="./Compiling1_files/201108170021.jpg" alt="201108170021.jpg">
+</p><p><br>
+</p>
+<ul><li> Now click the "Configure" button
+</li></ul>
+<p><br>
+<img src="./Compiling1_files/201108170022.jpg" alt="201108170022.jpg">
+</p><p><br>
+</p>
+<table class="notice notice-note noprint" style="background: #f2fff2; border: solid 1px #bfffbf; padding: 0.5em; width: 95%; margin: auto; vertical-align: top; -moz-border-radius:10px;">
+<tbody><tr>
+<td>
+<p><b>NOTE:</b><br>
+If everything went alright, the "Generate" button will become available/clickable.
+</p>
+</td></tr></tbody></table>
+<table class="notice notice-note noprint" style="background: #f2fff2; border: solid 1px #bfffbf; padding: 0.5em; width: 95%; margin: auto; vertical-align: top; -moz-border-radius:10px;">
+<tbody><tr>
+<td>
+<p><b>NOTE:</b><br>
+If there are errors, it might mean you selected features that are in conflict, or that are missing some required software.
+</p>
+</td></tr></tbody></table>
+<table class="notice notice-note noprint" style="background: #f2fff2; border: solid 1px #bfffbf; padding: 0.5em; width: 95%; margin: auto; vertical-align: top; -moz-border-radius:10px;">
+<tbody><tr>
+<td>
+<p><b>NOTE:</b><br>
+If you are sure everything you did was alright, or the errors you are getting are not related, post a new topic on forums asking for help.
+</p>
+</td></tr></tbody></table>
+<ul><li> click the "Generate" button.
+</li></ul>
+<table class="notice notice-note noprint" style="background: #f2fff2; border: solid 1px #bfffbf; padding: 0.5em; width: 95%; margin: auto; vertical-align: top; -moz-border-radius:10px;">
+<tbody><tr>
+<td>
+<p><b>NOTE:</b><br>
+If everything went OK, you will see a screen similar to this.
+</p>
+</td></tr></tbody></table>
+<p><br>
+<img src="./Compiling1_files/201108170023.jpg" alt="201108170023.jpg">
+</p><p><br>
+</p>
+<table class="notice notice-note noprint" style="background: #f2fff2; border: solid 1px #bfffbf; padding: 0.5em; width: 95%; margin: auto; vertical-align: top; -moz-border-radius:10px;">
+<tbody><tr>
+<td>
+<p><b>NOTE:</b><br>
+If you got an error or errors, post a new topic on forums asking for help!
+</p>
+</td></tr></tbody></table>
+<table class="notice notice-note noprint" style="background: #f2fff2; border: solid 1px #bfffbf; padding: 0.5em; width: 95%; margin: auto; vertical-align: top; -moz-border-radius:10px;">
+<tbody><tr>
+<td>
+<p><b>NOTE:</b><br>
+If all went OK, CMake will tell you that "Configuring done" and "Generating done", this means you are ready to build Arcemu.
+</p>
+</td></tr></tbody></table>
+<table class="notice notice-note noprint" style="background: #f2fff2; border: solid 1px #bfffbf; padding: 0.5em; width: 95%; margin: auto; vertical-align: top; -moz-border-radius:10px;">
+<tbody><tr>
+<td>
+<p><b>NOTE:</b><br>
+CMake generated lots of files in the build directory you specified, including project.sln for Visual Studio and Makefile for Unix platforms.
+</p>
+</td></tr></tbody></table>
+<ul><li> You may now proceed to compile/build Arcemu!
+</li></ul>
+<p><a href="http://arcemu.org/wiki/Compiling:_Windows#Compiling" title="Compiling: Windows">Compiling:_Windows#Compiling</a>
+</p><p><a href="http://arcemu.org/wiki/Compiling:_Linux#Compiling" title="Compiling: Linux">Compiling:_Linux#Compiling</a>
+</p><p><a href="http://arcemu.org/wiki/Compiling:_FreeBSD#Compiling_the_Source" title="Compiling: FreeBSD">Compiling:_FreeBSD#Compiling_the_Source</a>
+</p><p><a href="http://arcemu.org/wiki/Compiling:_Mac_OS_X#building_Arcemu" title="Compiling: Mac OS X" class="mw-redirect">Compiling:_Mac_OS_X#building_Arcemu</a>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 80/1000000
+Post-expand include size: 5705/2097152 bytes
+Template argument size: 1870/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wikimang:pcache:idhash:871-0!*!0!!*!*!edit=0 and timestamp 20140414195603 -->
+<div class="printfooter">
+Retrieved from "<a href="./Compiling1_files/Compiling1.htm">http://arcemu.org/wiki/Generating_the_Arcemu_build_files_using_the_CMake_GUI</a>"</div>
+		<div id="catlinks" class="catlinks catlinks-allhidden"></div>		<!-- end content -->
+				<div class="visualClear"></div>
+	</div>
+</div></div>
+<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+				 <li id="ca-nstab-main" class="selected"><a href="./Compiling1_files/Compiling1.htm" title="View the content page [alt-c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://arcemu.org/wiki/index.php?title=Talk:Generating_the_Arcemu_build_files_using_the_CMake_GUI&action=edit&redlink=1" title="Discussion about the content page [alt-t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://arcemu.org/wiki/index.php?title=Generating_the_Arcemu_build_files_using_the_CMake_GUI&action=edit" title="This page is protected.
+You can view its source [alt-e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://arcemu.org/wiki/index.php?title=Generating_the_Arcemu_build_files_using_the_CMake_GUI&action=history" title="Past revisions of this page [alt-h]" accesskey="h">History</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-login"><a href="http://arcemu.org/wiki/index.php?title=Special:UserLogin&returnto=Generating_the_Arcemu_build_files_using_the_CMake_GUI" title="You are encouraged to log in; however, it is not mandatory [alt-o]" accesskey="o">Log in / create account</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(http://www.arcemu.org/wiki/images/d/d9/Wglogo.png);" href="http://arcemu.org/wiki/Main_Page" title="Visit the main page"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class="generated-sidebar portlet" id="p-navigation">
+		<h5>Navigation</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage-description"><a href="http://arcemu.org/wiki/Main_Page" title="Visit the main page [alt-z]" accesskey="z">Main page</a></li>
+				<li id="n-portal"><a href="http://arcemu.org/wiki/ArcEmu-Wiki:Community_portal" title="About the project, what you can do, where to find things">Community portal</a></li>
+				<li id="n-currentevents"><a href="http://arcemu.org/wiki/ArcEmu-Wiki:Current_events" title="Find background information on current events">Current events</a></li>
+				<li id="n-recentchanges"><a href="http://arcemu.org/wiki/Special:RecentChanges" title="The list of recent changes in the wiki [alt-r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="http://arcemu.org/wiki/Special:Random" title="Load a random page [alt-x]" accesskey="x">Random page</a></li>
+				<li id="n-help"><a href="http://arcemu.org/wiki/Help:Contents" title="The place to find out">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://arcemu.org/wiki/index.php" id="searchform">
+				<input type="hidden" name="title" value="Special:Search">
+				<input id="searchInput" title="Search ArcEmu-Wiki" accesskey="f" type="search" name="search">
+				<input type="submit" name="go" class="searchButton" id="searchGoButton" value="Go" title="Go to a page with this exact name if exists">&nbsp;
+				<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text">
+			</form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="http://arcemu.org/wiki/Special:WhatLinksHere/Generating_the_Arcemu_build_files_using_the_CMake_GUI" title="List of all wiki pages that link here [alt-j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="http://arcemu.org/wiki/Special:RecentChangesLinked/Generating_the_Arcemu_build_files_using_the_CMake_GUI" title="Recent changes in pages linked from this page [alt-k]" accesskey="k">Related changes</a></li>
+<li id="t-specialpages"><a href="http://arcemu.org/wiki/Special:SpecialPages" title="List of all special pages [alt-q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://arcemu.org/wiki/index.php?title=Generating_the_Arcemu_build_files_using_the_CMake_GUI&printable=yes" rel="alternate" title="Printable version of this page [alt-p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://arcemu.org/wiki/index.php?title=Generating_the_Arcemu_build_files_using_the_CMake_GUI&oldid=6777" title="Permanent link to this revision of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-links">
+		<h5>links</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage-description"><a href="http://arcemu.org/wiki/Main_Page" title="Visit the main page [alt-z]" accesskey="z">Main page</a></li>
+				<li id="n-Lua"><a href="http://arcemu.org/wiki/Lua">Lua</a></li>
+				<li id="n-FAQ"><a href="http://arcemu.org/wiki/FAQ">FAQ</a></li>
+				<li id="n-IRC"><a href="http://arcemu.org/forums/index.php?showforum=192">IRC</a></li>
+			</ul>
+		</div>
+	</div>
+</div><!-- end of the left (by default at least) column -->
+<div class="visualClear"></div>
+<div id="footer">
+	<div id="f-copyrightico">
+		<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img src="./Compiling1_files/cc-by-nc-sa.png" alt="Creative Commons Attribution Non-Commercial Share Alike" width="88" height="31"></a>
+	</div>
+	<div id="f-poweredbyico">
+		<a href="http://www.mediawiki.org/"><img src="./Compiling1_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31"></a>
+	</div>
+	<ul id="f-list">
+		<li id="lastmod"> This page was last modified on 20 October 2011, at 17:26.</li>
+		<li id="viewcount">This page has been accessed 13,760 times.</li>
+		<li id="copyright">Content is available under <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/" class="external ">Creative Commons Attribution Non-Commercial Share Alike</a>.</li>
+		<li id="privacy"><a href="http://arcemu.org/wiki/ArcEmu-Wiki:Privacy_policy" title="ArcEmu-Wiki:Privacy policy">Privacy policy</a></li>
+		<li id="about"><a href="http://arcemu.org/wiki/ArcEmu-Wiki:About" title="ArcEmu-Wiki:About">About ArcEmu-Wiki</a></li>
+		<li id="disclaimer"><a href="http://arcemu.org/wiki/ArcEmu-Wiki:General_disclaimer" title="ArcEmu-Wiki:General disclaimer">Disclaimers</a></li>
+	</ul>
+</div>
+</div>
+
+<script src="./Compiling1_files/load.php"></script><script src="./Compiling1_files/load(1).php"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Generating_the_Arcemu_build_files_using_the_CMake_GUI", "wgTitle": "Generating the Arcemu build files using the CMake GUI", "wgAction": "view", "wgArticleId": 871, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 6777, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": ["sysop"], "wgRestrictionMove": ["sysop"], "wgWikiEditorEnabledModules": {"toolbar": true, "dialogs": true, "templateEditor": false, "templates": false, "addMediaWizard": false, "preview": true, "previewDialog": false, "publish": false, "toc": false}, "wgVectorEnabledModules": {"collapsiblenav": true, "collapsibletabs": true, "editwarning": false, "expandablesearch": false, "footercleanup": false, "simplesearch": true}});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script><script type="text/javascript" src="./Compiling1_files/load(2).php"></script>
+
+<script src="./Compiling1_files/load(3).php"></script><script type="text/javascript" src="./Compiling1_files/index.php"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"monobook","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"usebetatoolbar":1,"usebetatoolbar-cgd":1,"wikieditor-preview":1,"vector-simplesearch":1,"vector-collapsiblenav":1,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script><!-- Served in 0.234 secs. --></body></html>

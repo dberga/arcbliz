@@ -234,6 +234,7 @@ void LogonCommHandler::Connect(LogonServer* server)
 	Arcemu::Sleep(200);
 
 	Log.Success("LogonCommClient", "Logonserver latency is %ums.", conn->latency);
+	Log.Success("LogonCommClient", "SERVER IS READY!");
 }
 
 void LogonCommHandler::AdditionAck(uint32 ID, uint32 ServID)
@@ -307,7 +308,7 @@ void LogonCommHandler::ConnectionDropped(uint32 ID)
 	{
 		if(itr->first->ID == ID && itr->second != 0)
 		{
-			LOG_ERROR(" >> realm id %u connection was dropped unexpectedly. reconnecting next loop.", ID);
+			LOG_DETAIL("ERROR:  >> realm id %u connection was dropped unexpectedly. reconnecting next loop.", ID);
 			itr->second = 0;
 			break;
 		}
@@ -377,7 +378,7 @@ void LogonCommHandler::LoadRealmConfiguration()
 	uint32 realmcount = Config.RealmConfig.GetIntDefault("LogonServer", "RealmCount", 1);
 	if(realmcount == 0)
 	{
-		LOG_ERROR("   >> no realms found. this server will not be online anywhere!");
+		LOG_DETAIL("ERROR:    >> no realms found. this server will not be online anywhere!");
 	}
 	else
 	{

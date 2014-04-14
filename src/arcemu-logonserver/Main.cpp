@@ -143,7 +143,7 @@ bool startdb()
 			if(!existsPort) { errorMessage += "    Port\r\n"; }
 		}
 
-		LOG_ERROR(errorMessage.c_str());
+		LOG_DETAIL(errorMessage.c_str());
 		return false;
 	}
 
@@ -154,7 +154,7 @@ bool startdb()
 	                          lpassword.c_str(), ldatabase.c_str(), Config.MainConfig.GetIntDefault("LogonDatabase", "ConnectionCount", 5),
 	                          16384))
 	{
-		LOG_ERROR("sql: Logon database initialization failed. Exiting.");
+		LOG_DETAIL("ERROR: sql: Logon database initialization failed. Exiting.");
 		return false;
 	}
 
@@ -203,7 +203,7 @@ bool Rehash()
 	char* config_file = (char*)CONFDIR "/logon.conf";
 	if(!Config.MainConfig.SetSource(config_file))
 	{
-		LOG_ERROR("Config file could not be rehashed.");
+		LOG_DETAIL("ERROR: Config file could not be rehashed.");
 		return false;
 	}
 
@@ -223,7 +223,7 @@ bool Rehash()
 		string::size_type i = itr->find("/");
 		if(i == string::npos)
 		{
-			LOG_ERROR("IP: %s could not be parsed. Ignoring", itr->c_str());
+			LOG_DETAIL("ERROR: IP: %s could not be parsed. Ignoring", itr->c_str());
 			continue;
 		}
 
@@ -234,7 +234,7 @@ bool Rehash()
 		unsigned char ipmask = (char)atoi(smask.c_str());
 		if(ipraw == 0 || ipmask == 0)
 		{
-			LOG_ERROR("IP: %s could not be parsed. Ignoring", itr->c_str());
+			LOG_DETAIL("ERROR: IP: %s could not be parsed. Ignoring", itr->c_str());
 			continue;
 		}
 
@@ -249,7 +249,7 @@ bool Rehash()
 		string::size_type i = itr->find("/");
 		if(i == string::npos)
 		{
-			LOG_ERROR("IP: %s could not be parsed. Ignoring", itr->c_str());
+			LOG_DETAIL("ERROR: IP: %s could not be parsed. Ignoring", itr->c_str());
 			continue;
 		}
 
@@ -260,7 +260,7 @@ bool Rehash()
 		unsigned char ipmask = (char)atoi(smask.c_str());
 		if(ipraw == 0 || ipmask == 0)
 		{
-			LOG_ERROR("IP: %s could not be parsed. Ignoring", itr->c_str());
+			LOG_DETAIL("ERROR: IP: %s could not be parsed. Ignoring", itr->c_str());
 			continue;
 		}
 
@@ -331,11 +331,11 @@ void LogonServer::Run(int argc, char** argv)
 
 	if(do_check_conf)
 	{
-		LOG_BASIC("Checking config file: %s", config_file);
+		LOG_DETAIL("BASIC: Checking config file: %s", config_file);
 		if(Config.MainConfig.SetSource(config_file, true))
-			LOG_BASIC("  Passed without errors.");
+			LOG_DETAIL("BASIC:   Passed without errors.");
 		else
-			LOG_BASIC("  Encountered one or more errors.");
+			LOG_DETAIL("BASIC:   Encountered one or more errors.");
 		/* Remved useless die directive */
 		/*
 		string die;
@@ -492,7 +492,7 @@ void LogonServer::Run(int argc, char** argv)
 	}
 	else
 	{
-		LOG_ERROR("Error creating sockets. Shutting down...");
+		LOG_DETAIL("ERROR: Error creating sockets. Shutting down...");
 	}
 
 	pfc->kill();
@@ -526,7 +526,7 @@ void LogonServer::Run(int argc, char** argv)
 	delete pfc;
 	delete cl;
 	delete sl;
-	LOG_BASIC("Shutdown complete.");
+	LOG_DETAIL("BASIC: Shutdown complete.");
 	sLog.Close();
 }
 

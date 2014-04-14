@@ -151,7 +151,7 @@ void WorldSession::HandleSplitOpcode(WorldPacket & recv_data)
 			result = _player->GetItemInterface()->SafeAddItem(i2, DstInvSlot, DstSlot);
 			if(!result)
 			{
-				LOG_ERROR("HandleSplit: Error while adding item to dstslot");
+				LOG_DETAIL("ERROR: HandleSplit: Error while adding item to dstslot");
 				i2->DeleteFromDB();
 				i2->DeleteMe();
 				i2 = NULL;
@@ -576,7 +576,7 @@ void WorldSession::HandleAutoEquipItemOpcode(WorldPacket & recv_data)
 			result = _player->GetItemInterface()->SafeAddItem(oitem, SrcInvSlot, SrcSlot);
 			if(!result)
 			{
-				LOG_ERROR("HandleAutoEquip: Error while adding item to SrcSlot");
+				LOG_DETAIL("ERROR: HandleAutoEquip: Error while adding item to SrcSlot");
 				oitem->DeleteMe();
 				oitem = NULL;
 			}
@@ -586,7 +586,7 @@ void WorldSession::HandleAutoEquipItemOpcode(WorldPacket & recv_data)
 			result = _player->GetItemInterface()->SafeAddItem(eitem, INVENTORY_SLOT_NOT_SET, Slot);
 			if(!result)
 			{
-				LOG_ERROR("HandleAutoEquip: Error while adding item to Slot");
+				LOG_DETAIL("ERROR: HandleAutoEquip: Error while adding item to Slot");
 				eitem->DeleteMe();
 				eitem = NULL;
 				return;
@@ -714,7 +714,7 @@ void WorldSession::HandleItemQuerySingleOpcode(WorldPacket & recv_data)
 	ItemPrototype* itemProto = ItemPrototypeStorage.LookupEntry(itemid);
 	if(!itemProto)
 	{
-		LOG_ERROR("WORLD: Unknown item id 0x%.8X", itemid);
+		LOG_DETAIL("ERROR: WORLD: Unknown item id 0x%.8X", itemid);
 		return;
 	}
 
@@ -891,7 +891,7 @@ void WorldSession::HandleBuyBackOpcode(WorldPacket & recv_data)
 			result = _player->GetItemInterface()->AddItemToFreeSlot(it);
 			if(!result)
 			{
-				LOG_ERROR("HandleBuyBack: Error while adding item to free slot");
+				LOG_DETAIL("ERROR: HandleBuyBack: Error while adding item to free slot");
 				it->DeleteMe();
 			}
 		}
@@ -1421,7 +1421,7 @@ void WorldSession::SendInventoryList(Creature* unit)
 	if(!unit->HasItems())
 	{
 		sChatHandler.BlueSystemMessageToPlr(_player, "No sell template found. Report this to database's devs: %d (%s)", unit->GetEntry(), unit->GetCreatureInfo()->Name);
-		LOG_ERROR("'%s' discovered that a creature with entry %u (%s) has no sell template.", GetPlayer()->GetName(), unit->GetEntry(), unit->GetCreatureInfo()->Name);
+		LOG_DETAIL("ERROR: '%s' discovered that a creature with entry %u (%s) has no sell template.", GetPlayer()->GetName(), unit->GetEntry(), unit->GetCreatureInfo()->Name);
 		GetPlayer()->Gossip_Complete(); // cebernic: don't get a hang for the NPC
 		return;
 	}
@@ -1533,7 +1533,7 @@ void WorldSession::HandleAutoStoreBagItemOpcode(WorldPacket & recv_data)
 					result = _player->GetItemInterface()->SafeAddItem(srcitem, INVENTORY_SLOT_NOT_SET, NewSlot);
 					if(!result)
 					{
-						LOG_ERROR("HandleAutoStoreBagItem: Error while adding item to newslot");
+						LOG_DETAIL("ERROR: HandleAutoStoreBagItem: Error while adding item to newslot");
 						srcitem->DeleteMe();
 						return;
 					}
@@ -1572,7 +1572,7 @@ void WorldSession::HandleAutoStoreBagItemOpcode(WorldPacket & recv_data)
 							result = _player->GetItemInterface()->SafeAddItem(srcitem, DstInv, NewSlot);
 							if(!result)
 							{
-								LOG_ERROR("HandleBuyItemInSlot: Error while adding item to newslot");
+								LOG_DETAIL("ERROR: HandleBuyItemInSlot: Error while adding item to newslot");
 								srcitem->DeleteMe();
 								return;
 							}

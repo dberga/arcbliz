@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://arcemu.org/wiki/Compiling:_Windows -->
+<html lang="en" dir="ltr" class="client-chrome client-chrome-3 client-webkit client-win"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Compiling: Windows - ArcEmu-Wiki</title>
+<meta name="generator" content="MediaWiki 1.17.0beta1">
+<link rel="shortcut icon" href="http://arcemu.org/wiki/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="http://arcemu.org/wiki/opensearch_desc.php" title="ArcEmu-Wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="http://arcemu.org/wiki/api.php?action=rsd">
+<link title="Creative Commons" type="application/rdf+xml" href="http://arcemu.org/wiki/index.php?title=Compiling:_Windows&action=creativecommons" rel="meta">
+<link rel="copyright" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">
+<link rel="alternate" type="application/atom+xml" title="ArcEmu-Wiki Atom feed" href="http://arcemu.org/wiki/index.php?title=Special:RecentChanges&feed=atom">
+<link rel="stylesheet" href="http://arcemu.org/wiki/load.php?debug=false&lang=en&modules=mediawiki.legacy.commonPrint%7Cmediawiki.legacy.shared&only=styles&skin=monobook">
+<link rel="stylesheet" href="http://arcemu.org/wiki/skins/monobook/main.css?301" media="screen">
+<!--[if lt IE 5.5000]><link rel="stylesheet" href="/wiki/skins/monobook/IE50Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 5.5000]><link rel="stylesheet" href="/wiki/skins/monobook/IE55Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/monobook/IE60Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/monobook/IE70Fixes.css?301" media="screen" /><![endif]--><meta name="ResourceLoaderDynamicStyles" content=""><link rel="stylesheet" href="http://arcemu.org/wiki/load.php?debug=false&lang=en&modules=site&only=styles&skin=monobook">
+<link rel="stylesheet" href="http://arcemu.org/wiki/load.php?debug=false&lang=en&modules=site&only=styles&skin=monobook">
+<link rel="stylesheet" href="http://arcemu.org/wiki/load.php?debug=false&lang=en&modules=site&only=styles&skin=monobook">
+
+<style type="text/css"></style></head>
+<body class="mediawiki ltr ns-0 ns-subject page-Compiling_Windows skin-monobook">
+<div id="globalWrapper">
+<div id="column-content"><div id="content">
+	<a id="top"></a>
+	
+	<h1 id="firstHeading" class="firstHeading">Compiling: Windows</h1>
+	<div id="bodyContent">
+		<div id="siteSub">From ArcEmu-Wiki</div>
+		<div id="contentSub"></div>
+		<div id="jump-to-nav">Jump to: <a href="http://arcemu.org/wiki/Compiling:_Windows#column-one">navigation</a>, <a href="http://arcemu.org/wiki/Compiling:_Windows#searchInput">search</a></div>
+		<!-- start content -->
+<table style="width:100%; margin:0px; border:1px solid #aaa; background-color:#f9f9f9; font-size:smaller;">
+<caption style="margin-top:-0.5em;"><span style="float:right;"><a href="http://arcemu.org/wiki/Template:LanguageLinks" title="Template:LanguageLinks">+/-</a></span>
+</caption>
+<tbody><tr>
+<td style="padding-left:0.5em; padding-right:0.5em;">
+</td>
+<td><b><a href="http://arcemu.org/wiki/Main_Page" title="Main Page">Main Page</a></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Other languages:</b>&nbsp;&nbsp;&nbsp;<strong class="selflink">English</strong>&nbsp; • &nbsp; <a href="http://arcemu.org/wiki/DE:Compiling:_Windows" title="DE:Compiling: Windows">German</a> &nbsp;  • &nbsp; <a href="http://arcemu.org/wiki/index.php?title=FR:Compiling:_Windows&action=edit&redlink=1" class="new" title="FR:Compiling: Windows (page does not exist)">French</a><span style="float:right;"><a href="http://arcemu.org/" class="external text" rel="nofollow">ArcEmu Website</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://arcemu.org/forums" class="external text" rel="nofollow">ArcEmu Forum</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/arcemu/arcemu/issues" class="external text" rel="nofollow">Bug Tracker</a></span>
+</td></tr></tbody></table>
+<p><br>
+</p>
+<table class="notice notice-note noprint" style="background: #f2fff2; border: solid 1px #bfffbf; padding: 0.5em; width: 95%; margin: auto; vertical-align: top; -moz-border-radius:10px;">
+<tbody><tr>
+<td>
+<p>ArcEmu currently <b>ONLY</b> supports: 3.3.5a 12340 June 29, 2010
+</p>
+</td></tr></tbody></table>
+<p><br>
+</p>
+<table class="notice notice-note noprint" style="background: #e2fff2; border: solid 1px #bfffbf; padding: 0.2em; width: 100%; margin: auto; vertical-align: top">
+<tbody><tr>
+<td> <a href="http://arcemu.org/wiki/File:Ico_info.png" class="image"><img alt="Ico info.png" src="./Compiling2_files/Ico_info.png" width="40" height="40"></a>
+</td>
+<td> The express(free) version of Visual Studio does not contain 64 bit tools, purchasing a version such as Visual Studio 2010 Professional allows you to then compile code in 64 bit without a problem<b> See the end of the page</b>
+<p>Please note that you don't NEED the 64bit version. The 32bit version binaries will run fine, even if you are on a 64bit system!
+</p>
+</td></tr></tbody></table>
+<p><br>
+</p>
+<table cellspacing="0" cellpadding="0" style="clear: right; margin-bottom: .5em; float: right; padding: .5em 0 .8em 1.4em; background: none; width: auto;">
+<tbody><tr>
+<td> <table id="toc" class="toc"><tbody><tr><td><div id="toctitle"><h2>Contents</h2> <span class="toctoggle">[<a id="togglelink" class="internal" href="http://arcemu.org/wiki/Compiling:_Windows#">hide</a>]</span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="http://arcemu.org/wiki/Compiling:_Windows#Requirements"><span class="tocnumber">1</span> <span class="toctext">Requirements</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="http://arcemu.org/wiki/Compiling:_Windows#Generating_the_build_environment"><span class="tocnumber">2</span> <span class="toctext">Generating the build environment</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="http://arcemu.org/wiki/Compiling:_Windows#Open_the_project"><span class="tocnumber">3</span> <span class="toctext">Open the project</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="http://arcemu.org/wiki/Compiling:_Windows#Compiling_.2F_Building"><span class="tocnumber">4</span> <span class="toctext">Compiling / Building</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="http://arcemu.org/wiki/Compiling:_Windows#Step_1_.28Building_the_Code.29"><span class="tocnumber">4.1</span> <span class="toctext">Step 1 (Building the Code)</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="http://arcemu.org/wiki/Compiling:_Windows#Step_2_.28Copying_main_files.29"><span class="tocnumber">4.2</span> <span class="toctext">Step 2 (Copying main files)</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-7"><a href="http://arcemu.org/wiki/Compiling:_Windows#Compiling_for_X64_target_platform"><span class="tocnumber">5</span> <span class="toctext">Compiling for X64 target platform</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="http://arcemu.org/wiki/Compiling:_Windows#Next_step"><span class="tocnumber">6</span> <span class="toctext">Next step</span></a></li>
+</ul>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<p><br>
+</p>
+<h1> <span class="mw-headline" id="Requirements"> Requirements </span></h1>
+<p>You will need a C++ Compiler. The following explanations are based on <a href="http://www.microsoft.com/express/Windows/" class="external text" rel="nofollow">Visual C++ Express 2010</a> which is freely available.
+</p><p><b>Please note that Visual C++ 2010 requires Windows XP SP2 at least and therefore that is Arcemu's minimum requirement as well!</b>
+</p><p>Besides Visual Studio 2010, you will need CMake to generate the project files to allow you to build. <a href="http://www.cmake.org/cmake/resources/software.html" class="external text" rel="nofollow">Download CMake here.</a> Install with a desktop icon (for simplicity of the guide).
+</p><p><br>
+</p>
+<h1> <span class="mw-headline" id="Generating_the_build_environment"> Generating the build environment </span></h1>
+<p>Arcemu now uses the <a href="http://arcemu.org/wiki/CMake" title="CMake">CMake</a> cross platform build system, this means that before you can begin to build you will have to generate the build files.
+If you are having problems generating the solution files or you want to know what some of the options are when generating the project files, use one of the guides <b><a href="http://arcemu.org/wiki/CMake" title="CMake">on this page</a></b>.
+</p><p><br>
+</p>
+<h1> <span class="mw-headline" id="Open_the_project"> Open the project </span></h1>
+<p>Browse to where you have generated the build files.
+</p><p>Then open  <b>"Arcemu.sln"</b>
+</p><p><br>
+</p>
+<h1> <span class="mw-headline" id="Compiling_.2F_Building"> Compiling / Building </span></h1>
+<table class="notice notice-note noprint" style="background: #e2fff2; border: solid 1px #bfffbf; padding: 0.2em; width: 100%; margin: auto; vertical-align: top">
+<tbody><tr>
+<td> <a href="http://arcemu.org/wiki/File:Ico_info.png" class="image"><img alt="Ico info.png" src="./Compiling2_files/Ico_info.png" width="40" height="40"></a>
+</td>
+<td> This will be written in 2 steps to attempt to explain in more detail the steps to compiling.
+<p>None of these steps can be skipped if you are to produce a working server. Read carefully
+</p>
+</td></tr></tbody></table>
+<p><br>
+</p><p>Opening the Project File will take some time at first, the program will parse everything and get the interface set up for first use.
+</p><p><b>assuming you have not ran VS2010 before.</b>
+</p>
+<ul><li>A box will come up asking what your target language will be. Click "Microsoft Visual Studio C++"
+</li></ul>
+<p><b>If you have done this step before move on.</b>
+</p><p><br>
+</p>
+<h2> <span class="mw-headline" id="Step_1_.28Building_the_Code.29"> <b>Step 1</b> (Building the Code) </span></h2>
+<ul><li>Go to the previous menu in the toolbar or press F7 to "Build Solution"
+</li></ul>
+<p><b>Read: Sometimes the project will error out saying it could not "create a file", clean your build by accessing the "Build" menu, shutdown VC2010 and retry.</b>
+</p>
+<ul><li>The program will do some work and compile the code and related link libraries, sit back for a bit.
+</li><li>If your build was successful(you followed this guide to a T) you will get an output similar to this.
+</li></ul>
+<p><img src="./Compiling2_files/201108170025.jpg" alt="201108170025.jpg">
+</p>
+<h2> <span class="mw-headline" id="Step_2_.28Copying_main_files.29"> <b>Step 2</b> (Copying main files)</span></h2>
+<p>Now that you have a successful build of ArcEmu you need to install/copy the files.
+You can do that by selecting the <i>INSTALL</i> project in Visual Studio, right clicking on it, then selecting Project-Only -&gt; Build only INSTALL.
+</p>
+<ul><li> Select the <b>INSTALL</b> project
+</li></ul>
+<p><img src="./Compiling2_files/201108170026.jpg" alt="201108170026.jpg">
+</p><p><br>
+</p>
+<ul><li> Right click on it, then select Project-Only -&gt; Build only INSTALL
+</li></ul>
+<p><br>
+<img src="./Compiling2_files/201108170027.jpg" alt="201108170027.jpg">
+</p><p><br>
+</p>
+<ul><li> After doing this, you should see something similar to this
+</li></ul>
+<p><img src="./Compiling2_files/201108170028.jpg" alt="201108170028.jpg">
+</p><p><br>
+</p>
+<h1> <span class="mw-headline" id="Compiling_for_X64_target_platform"> Compiling for X64 target platform </span></h1>
+<p>Users finding it impossible to compile ArcEmu X64 target platform, 
+</p>
+<pre>"x64 compilers are not available for the Visual Studio Express edition IDEs. Microsoft targets the Express IDEs at students and hobbyists." <a href="http://en.wikipedia.org/wiki/Microsoft_Visual_Studio" class="external autonumber" rel="nofollow">[1]</a>
+</pre>
+<p>This means that the express(usually free) version of visual studio does not contain 64 bit compilers, purchasing a version such as Visual Studio 2010 Professional allows you to then compile code in 64 bit without a problem, however it has a significantly larger footprint on your system than the express version.
+</p><p><br>
+Please once again note, that you don't NEED the 64bit version, the 32bit version will run just fine on your 64bit system.
+</p><p><br>
+</p>
+<h1> <span class="mw-headline" id="Next_step"> Next step </span></h1>
+<p>You have successfully compiled your server, you're now ready to move on to <a href="http://arcemu.org/wiki/DBC_Extraction" title="DBC Extraction">DBC Extraction</a>.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 78/1000000
+Post-expand include size: 2169/2097152 bytes
+Template argument size: 592/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wikimang:pcache:idhash:5-0!*!0!!en!2!edit=0 and timestamp 20140414084140 -->
+<div class="printfooter">
+Retrieved from "<a href="./Compiling2_files/Compiling2.htm">http://arcemu.org/wiki/Compiling:_Windows</a>"</div>
+		<div id="catlinks" class="catlinks"><div id="mw-normal-catlinks"><a href="http://arcemu.org/wiki/Special:Categories" title="Special:Categories">Category</a>: <span dir="ltr"><a href="http://arcemu.org/wiki/Category:Installation" title="Category:Installation">Installation</a></span></div></div>		<!-- end content -->
+				<div class="visualClear"></div>
+	</div>
+</div></div>
+<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+				 <li id="ca-nstab-main" class="selected"><a href="./Compiling2_files/Compiling2.htm" title="View the content page [alt-c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk"><a href="http://arcemu.org/wiki/Talk:Compiling:_Windows" title="Discussion about the content page [alt-t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="http://arcemu.org/wiki/index.php?title=Compiling:_Windows&action=edit" title="This page is protected.
+You can view its source [alt-e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="http://arcemu.org/wiki/index.php?title=Compiling:_Windows&action=history" title="Past revisions of this page [alt-h]" accesskey="h">History</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-login"><a href="http://arcemu.org/wiki/index.php?title=Special:UserLogin&returnto=Compiling:_Windows" title="You are encouraged to log in; however, it is not mandatory [alt-o]" accesskey="o">Log in / create account</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(http://www.arcemu.org/wiki/images/d/d9/Wglogo.png);" href="http://arcemu.org/wiki/Main_Page" title="Visit the main page"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class="generated-sidebar portlet" id="p-navigation">
+		<h5>Navigation</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage-description"><a href="http://arcemu.org/wiki/Main_Page" title="Visit the main page [alt-z]" accesskey="z">Main page</a></li>
+				<li id="n-portal"><a href="http://arcemu.org/wiki/ArcEmu-Wiki:Community_portal" title="About the project, what you can do, where to find things">Community portal</a></li>
+				<li id="n-currentevents"><a href="http://arcemu.org/wiki/ArcEmu-Wiki:Current_events" title="Find background information on current events">Current events</a></li>
+				<li id="n-recentchanges"><a href="http://arcemu.org/wiki/Special:RecentChanges" title="The list of recent changes in the wiki [alt-r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="http://arcemu.org/wiki/Special:Random" title="Load a random page [alt-x]" accesskey="x">Random page</a></li>
+				<li id="n-help"><a href="http://arcemu.org/wiki/Help:Contents" title="The place to find out">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://arcemu.org/wiki/index.php" id="searchform">
+				<input type="hidden" name="title" value="Special:Search">
+				<input id="searchInput" title="Search ArcEmu-Wiki" accesskey="f" type="search" name="search">
+				<input type="submit" name="go" class="searchButton" id="searchGoButton" value="Go" title="Go to a page with this exact name if exists">&nbsp;
+				<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text">
+			</form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="http://arcemu.org/wiki/Special:WhatLinksHere/Compiling:_Windows" title="List of all wiki pages that link here [alt-j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="http://arcemu.org/wiki/Special:RecentChangesLinked/Compiling:_Windows" title="Recent changes in pages linked from this page [alt-k]" accesskey="k">Related changes</a></li>
+<li id="t-specialpages"><a href="http://arcemu.org/wiki/Special:SpecialPages" title="List of all special pages [alt-q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://arcemu.org/wiki/index.php?title=Compiling:_Windows&printable=yes" rel="alternate" title="Printable version of this page [alt-p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://arcemu.org/wiki/index.php?title=Compiling:_Windows&oldid=7688" title="Permanent link to this revision of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-links">
+		<h5>links</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage-description"><a href="http://arcemu.org/wiki/Main_Page" title="Visit the main page [alt-z]" accesskey="z">Main page</a></li>
+				<li id="n-Lua"><a href="http://arcemu.org/wiki/Lua">Lua</a></li>
+				<li id="n-FAQ"><a href="http://arcemu.org/wiki/FAQ">FAQ</a></li>
+				<li id="n-IRC"><a href="http://arcemu.org/forums/index.php?showforum=192">IRC</a></li>
+			</ul>
+		</div>
+	</div>
+</div><!-- end of the left (by default at least) column -->
+<div class="visualClear"></div>
+<div id="footer">
+	<div id="f-copyrightico">
+		<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img src="./Compiling2_files/cc-by-nc-sa.png" alt="Creative Commons Attribution Non-Commercial Share Alike" width="88" height="31"></a>
+	</div>
+	<div id="f-poweredbyico">
+		<a href="http://www.mediawiki.org/"><img src="./Compiling2_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31"></a>
+	</div>
+	<ul id="f-list">
+		<li id="lastmod"> This page was last modified on 7 June 2012, at 00:11.</li>
+		<li id="viewcount">This page has been accessed 190,141 times.</li>
+		<li id="copyright">Content is available under <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/" class="external ">Creative Commons Attribution Non-Commercial Share Alike</a>.</li>
+		<li id="privacy"><a href="http://arcemu.org/wiki/ArcEmu-Wiki:Privacy_policy" title="ArcEmu-Wiki:Privacy policy">Privacy policy</a></li>
+		<li id="about"><a href="http://arcemu.org/wiki/ArcEmu-Wiki:About" title="ArcEmu-Wiki:About">About ArcEmu-Wiki</a></li>
+		<li id="disclaimer"><a href="http://arcemu.org/wiki/ArcEmu-Wiki:General_disclaimer" title="ArcEmu-Wiki:General disclaimer">Disclaimers</a></li>
+	</ul>
+</div>
+</div>
+
+<script src="./Compiling2_files/load.php"></script><script src="./Compiling2_files/load(1).php"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Compiling:_Windows", "wgTitle": "Compiling: Windows", "wgAction": "view", "wgArticleId": 5, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 7688, "wgCategories": ["Installation"], "wgBreakFrames": false, "wgRestrictionEdit": ["sysop"], "wgRestrictionMove": ["sysop"], "wgWikiEditorEnabledModules": {"toolbar": true, "dialogs": true, "templateEditor": false, "templates": false, "addMediaWizard": false, "preview": true, "previewDialog": false, "publish": false, "toc": false}, "wgVectorEnabledModules": {"collapsiblenav": true, "collapsibletabs": true, "editwarning": false, "expandablesearch": false, "footercleanup": false, "simplesearch": true}});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script><script type="text/javascript" src="./Compiling2_files/load(2).php"></script>
+
+<script src="./Compiling2_files/load(3).php"></script><script type="text/javascript" src="./Compiling2_files/index.php"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"monobook","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"usebetatoolbar":1,"usebetatoolbar-cgd":1,"wikieditor-preview":1,"vector-simplesearch":1,"vector-collapsiblenav":1,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script><!-- Served in 0.107 secs. --></body></html>

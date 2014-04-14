@@ -1618,7 +1618,7 @@ void Creature::OnPushToWorld()
 {
 	if(proto == NULL)
 	{
-		LOG_ERROR("Something tried to push to world Creature ID %u with proto set to NULL.", GetEntry());
+		LOG_DETAIL("ERROR: Something tried to push to world Creature ID %u with proto set to NULL.", GetEntry());
 #ifdef _DEBUG
 		ARCEMU_ASSERT(false);
 #else
@@ -1627,7 +1627,7 @@ void Creature::OnPushToWorld()
 	}
 	if(creature_info == NULL)
 	{
-		LOG_ERROR("Something tried to push to world Creature ID %u with creature_info set to NULL.", GetEntry());
+		LOG_DETAIL("ERROR: Something tried to push to world Creature ID %u with creature_info set to NULL.", GetEntry());
 #ifdef _DEBUG
 		ARCEMU_ASSERT(false);
 #else
@@ -2362,7 +2362,7 @@ Object* Creature::GetPlayerOwner()
 
 void Creature::AddVehicleComponent( uint32 creature_entry, uint32 vehicleid ){
 	if( vehicle != NULL ){
-		LOG_ERROR( "Creature %u ( %s ) with GUID %u already has a vehicle component.", proto->Id, creature_info->Name, GetUIdFromGUID() );
+		LOG_DETAIL("ERROR: Creature %u ( %s ) with GUID %u already has a vehicle component.", proto->Id, creature_info->Name, GetUIdFromGUID() );
 		return;
 	}
 

@@ -951,7 +951,7 @@ CBattleground* CBattlegroundManager::CreateInstance(uint32 Type, uint32 LevelGro
 {
 	if( bgMaps.find( Type ) == bgMaps.end() ){
 		if( !IS_ARENA( Type ) ){
-			LOG_ERROR( "BattlegroundManager", "No map Id is registered for Battleground type %u", Type );
+			LOG_DETAIL("ERROR: BattlegroundManager", "No map Id is registered for Battleground type %u", Type );
 			return NULL;
 		}
 	}
@@ -975,7 +975,7 @@ CBattleground* CBattlegroundManager::CreateInstance(uint32 Type, uint32 LevelGro
 		/* arenas follow a different procedure. */
 		uint32 arenaMapCount = arenaMaps.size();
 		if( arenaMapCount == 0 ){
-			LOG_ERROR( "BattlegroundManager", "There are no Arenas registered. Cannot create Arena." );
+			LOG_DETAIL("ERROR: BattlegroundManager", "There are no Arenas registered. Cannot create Arena." );
 			return NULL;
 		}
 
@@ -1108,7 +1108,7 @@ void CBattlegroundManager::DeleteBattleground(CBattleground* bg)
 	}
 	catch(...)  // for Win32 Debug
 	{
-		LOG_ERROR("Exception: CBattlegroundManager::DeleteBattleground");
+		LOG_DETAIL("ERROR: Exception: CBattlegroundManager::DeleteBattleground");
 		printStackTrace();
 		throw;
 	}

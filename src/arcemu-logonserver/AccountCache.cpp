@@ -166,7 +166,7 @@ void AccountMgr::AddAccount(Field* field)
 		}
 		else
 		{
-			LOG_ERROR("Account `%s` has incorrect number of bytes in encrypted password! Disabling.", Username.c_str());
+			LOG_DETAIL("ERROR: Account `%s` has incorrect number of bytes in encrypted password! Disabling.", Username.c_str());
 			memset(acct->SrpHash, 0, 20);
 		}
 	}
@@ -192,7 +192,7 @@ void AccountMgr::UpdateAccount(Account* acct, Field* field)
 
 	if(id != acct->AccountId)
 	{
-		LOG_ERROR(" >> deleting duplicate account %u [%s]...", id, Username.c_str());
+		LOG_DETAIL("ERROR:  >> deleting duplicate account %u [%s]...", id, Username.c_str());
 		sLogonSQL->Execute("DELETE FROM accounts WHERE acct=%u", id);
 		return;
 	}
@@ -252,7 +252,7 @@ void AccountMgr::UpdateAccount(Account* acct, Field* field)
 		}
 		else
 		{
-			LOG_ERROR("Account `%s` has incorrect number of bytes in encrypted password! Disabling.", Username.c_str());
+			LOG_DETAIL("ERROR: Account `%s` has incorrect number of bytes in encrypted password! Disabling.", Username.c_str());
 			memset(acct->SrpHash, 0, 20);
 		}
 	}
@@ -377,7 +377,7 @@ void IPBanner::Reload()
 			unsigned int ipmask = atoi(smask.c_str());
 			if(ipraw == 0 || ipmask == 0)
 			{
-				LOG_ERROR("IP ban \"%s\" could not be parsed. Ignoring", ip.c_str());
+				LOG_DETAIL("ERROR: IP ban \"%s\" could not be parsed. Ignoring", ip.c_str());
 				continue;
 			}
 

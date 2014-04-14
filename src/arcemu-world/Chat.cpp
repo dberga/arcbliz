@@ -148,7 +148,7 @@ void CommandTableStorage::Override(const char* command, const char* level)
 				ChatCommand* p2 = p->ChildCommands;
 				if(!p2)
 				{
-					LOG_ERROR("Invalid command specified for override: %s", command_name);
+					LOG_DETAIL("ERROR: Invalid command specified for override: %s", command_name);
 				}
 				else
 				{
@@ -175,7 +175,7 @@ void CommandTableStorage::Override(const char* command, const char* level)
 					{
 						if(strnicmp("*", subcommand_name, 1)) //Hacky.. meh.. -DGM
 						{
-							LOG_ERROR("Invalid subcommand referenced: `%s` under `%s`.", subcommand_name, p->Name);
+							LOG_DETAIL("ERROR: Invalid subcommand referenced: `%s` under `%s`.", subcommand_name, p->Name);
 						}
 						break;
 					}
@@ -188,7 +188,7 @@ void CommandTableStorage::Override(const char* command, const char* level)
 
 	if(p->Name == 0)
 	{
-		LOG_ERROR("Invalid command referenced: `%s`", command_name);
+		LOG_DETAIL("ERROR: Invalid command referenced: `%s`", command_name);
 	}
 
 	free(cmd);

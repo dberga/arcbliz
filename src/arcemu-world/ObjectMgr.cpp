@@ -1482,7 +1482,7 @@ void ObjectMgr::LoadSpellProcs()
 						sp->ProcOnNameHash[x] = spe_NameHash;
 					}
 					else
-						LOG_ERROR("Wrong ProcOnNameHash for Spell: %u!", spe_spellId);
+						LOG_DETAIL("ERROR: Wrong ProcOnNameHash for Spell: %u!", spe_spellId);
 
 					sp->procFlags = f[2].GetUInt32();
 
@@ -1792,7 +1792,7 @@ void ObjectMgr::CreateGossipMenuForPlayer(GossipMenu** Location, uint64 Guid, ui
 	if(TextID == 0)
 	{
 		//TextID = 0 will not show the gossip to the player. Using "2" since it's the default value in GossipScript::GossipHello()
-		LOG_ERROR("Object with GUID " I64FMT " is trying to create a GossipMenu with TextID == 0", Guid);
+		LOG_DETAIL("ERROR: Object with GUID " I64FMT " is trying to create a GossipMenu with TextID == 0", Guid);
 		TextID = 2;
 	}
 
@@ -2934,7 +2934,7 @@ void ObjectMgr::LoadMonsterSay()
 
 		if(mMonsterSays[Event].find(Entry) != mMonsterSays[Event].end())
 		{
-			LOG_ERROR("Duplicate monstersay event %u for entry %u, skipping", Event, Entry);
+			LOG_DETAIL("ERROR: Duplicate monstersay event %u for entry %u, skipping", Event, Entry);
 			continue;
 		}
 

@@ -66,7 +66,7 @@ void LogonCommServerSocket::OnConnect()
 {
 	if(!IsServerAllowed(GetRemoteAddress().s_addr))
 	{
-		LOG_ERROR("Server connection from %s:%u DENIED, not an allowed IP.", GetRemoteIP().c_str(), GetRemotePort());
+		LOG_DETAIL("ERROR: Server connection from %s:%u DENIED, not an allowed IP.", GetRemoteIP().c_str(), GetRemotePort());
 		Disconnect();
 		return;
 	}
@@ -158,7 +158,7 @@ void LogonCommServerSocket::HandlePacket(WorldPacket & recvData)
 
 	if(recvData.GetOpcode() >= RMSG_COUNT || Handlers[recvData.GetOpcode()] == 0)
 	{
-		LOG_ERROR("Got unknwon packet from logoncomm: %u", recvData.GetOpcode());
+		LOG_DETAIL("ERROR: Got unknwon packet from logoncomm: %u", recvData.GetOpcode());
 		return;
 	}
 
@@ -297,12 +297,12 @@ void LogonCommServerSocket::HandleSQLExecute(WorldPacket & recvData)
 	/*string Query;
 	recvData >> Query;
 	sLogonSQL->Execute(Query.c_str());*/
-	LOG_ERROR("!! WORLD SERVER IS REQUESTING US TO EXECUTE SQL. THIS IS DEPRECATED AND IS BEING IGNORED. THE SERVER WAS: %s, PLEASE UPDATE IT.", GetRemoteIP().c_str());
+	LOG_DETAIL("ERROR: !! WORLD SERVER IS REQUESTING US TO EXECUTE SQL. THIS IS DEPRECATED AND IS BEING IGNORED. THE SERVER WAS: %s, PLEASE UPDATE IT.", GetRemoteIP().c_str());
 }
 
 void LogonCommServerSocket::HandleReloadAccounts(WorldPacket & recvData)
 {
-	LOG_ERROR("!! WORLD SERVER IS REQUESTING US TO RELOAD ACCOUNTS. THIS IS DEPRECATED AND IS BEING IGNORED. THE SERVER WAS: %s, PLEASE UPDATE IT.", GetRemoteIP().c_str());
+	LOG_DETAIL("ERROR: !! WORLD SERVER IS REQUESTING US TO RELOAD ACCOUNTS. THIS IS DEPRECATED AND IS BEING IGNORED. THE SERVER WAS: %s, PLEASE UPDATE IT.", GetRemoteIP().c_str());
 	//sAccountMgr.ReloadAccounts(true);
 }
 
@@ -356,7 +356,7 @@ void LogonCommServerSocket::HandleMappingReply(WorldPacket & recvData)
 
 	if(uncompress((uint8*)buf.contents(), &rsize, recvData.contents() + 4, (u_long)recvData.size() - 4) != Z_OK)
 	{
-		LOG_ERROR("Uncompress of mapping failed.");
+		LOG_DETAIL("ERROR: Uncompress of mapping failed.");
 		return;
 	}
 
@@ -373,7 +373,7 @@ void LogonCommServerSocket::HandleMappingReply(WorldPacket & recvData)
 
 	HM_NAMESPACE::hash_map<uint32, uint8>::iterator itr;
 	buf >> count;
-	LOG_BASIC("Got mapping packet for realm %u, total of %u entries.", (unsigned int)realm_id, (unsigned int)count);
+	LOG_DETAIL("BASIC: Got mapping packet for realm %u, total of %u entries.", (unsigned int)realm_id, (unsigned int)count);
 	for(uint32 i = 0; i < count; ++i)
 	{
 		buf >> account_id >> number_of_characters;

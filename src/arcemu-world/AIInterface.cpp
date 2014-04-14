@@ -872,7 +872,7 @@ void AIInterface::_UpdateCombat(uint32 p_time)
 									break;
 								}
 							default:
-								LOG_ERROR("AI Agents: Targettype of AI agent spell %u for creature %u not set", spellInfo->Id, TO< Creature* >(m_Unit)->GetCreatureInfo()->Id);
+								LOG_DETAIL("ERROR: AI Agents: Targettype of AI agent spell %u for creature %u not set", spellInfo->Id, TO< Creature* >(m_Unit)->GetCreatureInfo()->Id);
 						}
 						// CastSpell(m_Unit, spellInfo, targets);
 						if(m_nextSpell && m_nextSpell->cooldown)
@@ -1980,7 +1980,7 @@ void AIInterface::addWayPoint(WayPoint* wp)
 
 	if(!addWayPointUnsafe(wp))
 	{
-		LOG_ERROR("WayPoint ID %u wasn't added to Unit ID %x due to an error occurred in AIInterface::addWayPoint()", wp->id, GetUnit()->GetGUID());
+		LOG_DETAIL("ERROR: WayPoint ID %u wasn't added to Unit ID %x due to an error occurred in AIInterface::addWayPoint()", wp->id, GetUnit()->GetGUID());
 		delete wp;
 	}
 }
@@ -2670,7 +2670,7 @@ SpellEntry* AIInterface::getSpellEntry(uint32 spellId)
 
 	if(!spellInfo)
 	{
-		LOG_ERROR("WORLD: unknown spell id %i", spellId);
+		LOG_DETAIL("ERROR: WORLD: unknown spell id %i", spellId);
 		return NULL;
 	}
 
@@ -3666,7 +3666,7 @@ void AIInterface::AddSpline(float x, float y, float z)
 			movetime = (uint32)(dist / m_walkSpeed);
 		else
 		{
-			LOG_ERROR("Added a spline with unhandled spline flag: %X", m_splineFlags);
+			LOG_DETAIL("ERROR: Added a spline with unhandled spline flag: %X", m_splineFlags);
 			//setting movetime to default value of 1 second. Change if to either a return; or something more meaningful
 			//but don't leave movetime uninitialized...
 			movetime = 1.0f;
@@ -3674,7 +3674,7 @@ void AIInterface::AddSpline(float x, float y, float z)
 	}
 	else
 	{
-		LOG_ERROR("Added a spline with unhandled spline flag: %X", m_splineFlags);
+		LOG_DETAIL("ERROR: Added a spline with unhandled spline flag: %X", m_splineFlags);
 		//setting movetime to default value of 1 second. Change if to either a return; or something more meaningful
 		//but don't leave movetime uninitialized...
 		movetime = 1.0f;

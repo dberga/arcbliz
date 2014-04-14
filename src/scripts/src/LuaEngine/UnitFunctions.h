@@ -73,7 +73,7 @@ class LuaUnit
 			uint32 boxmoney = luaL_optint(L,6,0);
 
 			if( Menu == NULL ){
-				LOG_ERROR( "There is no menu to add items to!" );
+				LOG_DETAIL("ERROR: There is no menu to add items to!" );
 				return 0;
 			}
 			
@@ -87,7 +87,7 @@ class LuaUnit
 			Player* plr = CHECK_PLAYER(L,1);
 
 			if( Menu == NULL ){
-				LOG_ERROR( "There is no menu to send!" );
+				LOG_DETAIL("ERROR: There is no menu to send!" );
 				return 0;
 			}
 
@@ -137,7 +137,7 @@ class LuaUnit
 			TEST_UNIT()
 
 			if( Menu == NULL ){
-				LOG_ERROR( "There's no menu to fill quests into." );
+				LOG_DETAIL("ERROR: There's no menu to fill quests into." );
 				return 0;
 			}
 
@@ -155,7 +155,7 @@ class LuaUnit
 			Player * plr = TO_PLAYER(ptr);
 
 			if( Menu == NULL ){
-				LOG_ERROR( "There is no menu to complete!" );
+				LOG_DETAIL("ERROR: There is no menu to complete!" );
 				return 0;
 			}
 
@@ -601,7 +601,7 @@ class LuaUnit
 			{
 				GameObjectInfo *info = GameObjectNameStorage.LookupEntry( entry_id );
 				if( info == NULL ){
-					LOG_ERROR( "Lua script tried to spawn a gameobject that doesn't exist ( %u ). Aborting.", entry_id );
+					LOG_DETAIL("ERROR: Lua script tried to spawn a gameobject that doesn't exist ( %u ). Aborting.", entry_id );
 					lua_pushnil( L );
 					return 1;
 				}

@@ -791,7 +791,7 @@ bool Object::SetPosition(const LocationVector & v, bool allowPorting /* = false 
 	if(!allowPorting && v.z < -500)
 	{
 		m_position.z = 500;
-		LOG_ERROR("setPosition: fell through map; height ported");
+		LOG_DETAIL("ERROR: setPosition: fell through map; height ported");
 
 		result = false;
 	}
@@ -824,7 +824,7 @@ bool Object::SetPosition(float newX, float newY, float newZ, float newOrientatio
 	if(!allowPorting && newZ < -500)
 	{
 		m_position.z = 500;
-		LOG_ERROR("setPosition: fell through map; height ported");
+		LOG_DETAIL("ERROR: setPosition: fell through map; height ported");
 
 		result = false;
 	}
@@ -894,7 +894,7 @@ void Object::AddToWorld()
 	MapMgr* mapMgr = sInstanceMgr.GetInstance(this);
 	if(mapMgr == NULL)
 	{
-		LOG_ERROR("AddToWorld() failed for Object with GUID " I64FMT " MapId %u InstanceId %u", GetGUID(), GetMapId(), GetInstanceID());
+		LOG_DETAIL("ERROR: AddToWorld() failed for Object with GUID " I64FMT " MapId %u InstanceId %u", GetGUID(), GetMapId(), GetInstanceID());
 		return;
 	}
 
@@ -964,7 +964,7 @@ void Object::PushToWorld(MapMgr* mgr)
 
 	if(mgr == NULL)
 	{
-		LOG_ERROR("Invalid push to world of Object " I64FMT, GetGUID());
+		LOG_DETAIL("ERROR: Invalid push to world of Object " I64FMT, GetGUID());
 		return; //instance add failed
 	}
 
@@ -1524,13 +1524,13 @@ void Object::_setFaction()
 	{
 		factT = dbcFactionTemplate.LookupEntryForced(TO_UNIT(this)->GetFaction());
 		if(!factT)
-			LOG_ERROR("Unit does not have a valid faction. It will make him act stupid in world. Don't blame us, blame yourself for not checking :P, faction %u set to entry %u", TO_UNIT(this)->GetFaction(), GetEntry());
+			LOG_DETAIL("ERROR: Unit does not have a valid faction. It will make him act stupid in world. Don't blame us, blame yourself for not checking :P, faction %u set to entry %u", TO_UNIT(this)->GetFaction(), GetEntry());
 	}
 	else if(IsGameObject())
 	{
 		factT = dbcFactionTemplate.LookupEntryForced(TO< GameObject* >(this)->GetFaction());
 		if(!factT)
-			LOG_ERROR("Game Object does not have a valid faction. It will make him act stupid in world. Don't blame us, blame yourself for not checking :P, faction %u set to entry %u", TO< GameObject* >(this)->GetFaction(), GetEntry());
+			LOG_DETAIL("ERROR: Game Object does not have a valid faction. It will make him act stupid in world. Don't blame us, blame yourself for not checking :P, faction %u set to entry %u", TO< GameObject* >(this)->GetFaction(), GetEntry());
 	}
 
 	if(!factT)
@@ -2252,7 +2252,7 @@ void Object::AddInRangeObject(Object* pObj)
 	ARCEMU_ASSERT(pObj != NULL);
 
 	if(pObj == this)
-		LOG_ERROR("We are in range of ourselves!");
+		LOG_DETAIL("ERROR: We are in range of ourselves!");
 
 	if(pObj->IsPlayer())
 		m_inRangePlayers.insert(pObj);

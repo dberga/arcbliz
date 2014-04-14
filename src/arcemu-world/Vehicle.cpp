@@ -38,13 +38,13 @@ Vehicle::~Vehicle(){
 
 void Vehicle::Load( Unit *owner, uint32 creature_entry, uint32 vehicleid ){
 	if( owner == NULL ){
-		LOG_ERROR( "Can't load vehicle without an owner." );
+		LOG_DETAIL("ERROR: Can't load vehicle without an owner." );
 		ARCEMU_ASSERT( false );
 	}
 
 	vehicle_info = dbcVehicle.LookupEntry( vehicleid );
 	if( vehicle_info == NULL ){
-		LOG_ERROR( "Can't load a vehicle without vehicle id or data belonging to it." );
+		LOG_DETAIL("ERROR: Can't load a vehicle without vehicle id or data belonging to it." );
 		ARCEMU_ASSERT( false );
 	}
 
@@ -54,7 +54,7 @@ void Vehicle::Load( Unit *owner, uint32 creature_entry, uint32 vehicleid ){
 		if( seatid != 0 ){
 			VehicleSeatEntry *seatinfo = dbcVehicleSeat.LookupEntry( seatid );
 			if( seatinfo == NULL ){
-				LOG_ERROR( "Invalid seat id %u for seat %u for vehicle id %u", seatid, i, vehicleid );
+				LOG_DETAIL("ERROR: Invalid seat id %u for seat %u for vehicle id %u", seatid, i, vehicleid );
 				continue;
 			}
 

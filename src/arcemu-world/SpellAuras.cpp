@@ -944,7 +944,7 @@ void Aura::AddMod(uint32 t, int32 a, uint32 miscValue, uint32 i)
 
 	if(m_modcount >= 3)
 	{
-		LOG_ERROR("Tried to add >3 (%u) mods to spellid %u [%u:%u, %u:%u, %u:%u]", m_modcount + 1, this->m_spellProto->Id, m_modList[0].m_type, m_modList[0].m_amount, m_modList[1].m_type, m_modList[1].m_amount, m_modList[2].m_type, m_modList[2].m_amount);
+		LOG_DETAIL("ERROR: Tried to add >3 (%u) mods to spellid %u [%u:%u, %u:%u, %u:%u]", m_modcount + 1, this->m_spellProto->Id, m_modList[0].m_type, m_modList[0].m_amount, m_modList[1].m_type, m_modList[1].m_amount, m_modList[2].m_type, m_modList[2].m_amount);
 		return;
 	}
 	m_modList[m_modcount].m_type = t;
@@ -977,7 +977,7 @@ void Aura::ApplyModifiers(bool apply)
 
 		}
 		else
-			LOG_ERROR("Unknown Aura id %d", m_modList[x].m_type);
+			LOG_DETAIL("ERROR: Unknown Aura id %d", m_modList[x].m_type);
 	}
 }
 
@@ -1004,7 +1004,7 @@ void Aura::UpdateModifiers()
 			}
 		}
 		else
-			LOG_ERROR("Unknown Aura id %d", (uint32)mod->m_type);
+			LOG_DETAIL("ERROR: Unknown Aura id %d", (uint32)mod->m_type);
 	}
 }
 
@@ -1458,7 +1458,7 @@ void Aura::EventUpdateAA(float r)
 	uint32 AAEffectId = m_spellProto->GetAAEffectId();
 	if(AAEffectId == 0)
 	{
-		LOG_ERROR("Spell %u ( %s ) has tried to update Area Aura targets but Spell has no Area Aura effect.", m_spellProto->Id, m_spellProto->Name);
+		LOG_DETAIL("ERROR: Spell %u ( %s ) has tried to update Area Aura targets but Spell has no Area Aura effect.", m_spellProto->Id, m_spellProto->Name);
 		ARCEMU_ASSERT(false);
 	}
 
@@ -1923,7 +1923,7 @@ void Aura::SpellAuraDummy(bool apply)
 	if(sScriptMgr.CallScriptedDummyAura(GetSpellId(), mod->i, this, apply))
 		return;
 
-	LOG_ERROR("Spell %u ( %s ) has an apply dummy aura effect, but no handler for it. ", m_spellProto->Id, m_spellProto->Name);
+	LOG_DETAIL("ERROR: Spell %u ( %s ) has an apply dummy aura effect, but no handler for it. ", m_spellProto->Id, m_spellProto->Name);
 }
 
 void Aura::SpellAuraModConfuse(bool apply)
@@ -2970,7 +2970,7 @@ void Aura::EventPeriodicManaPct(float RegenPct)
 void Aura::EventPeriodicTriggerDummy()
 {
 	if(!sScriptMgr.CallScriptedDummyAura(m_spellProto->Id, mod->i, this, true))
-		LOG_ERROR("Spell %u ( %s ) has an apply periodic trigger dummy aura effect, but no handler for it.", m_spellProto->Id, m_spellProto->Name);
+		LOG_DETAIL("ERROR: Spell %u ( %s ) has an apply periodic trigger dummy aura effect, but no handler for it.", m_spellProto->Id, m_spellProto->Name);
 }
 
 void Aura::SpellAuraModResistance(bool apply)
@@ -5501,7 +5501,7 @@ void Aura::SpellAuraPeriodicTriggerDummy(bool apply)
 	else
 	{
 		if(!sScriptMgr.CallScriptedDummyAura(m_spellProto->Id, mod->i, this, false))
-			LOG_ERROR("Spell %u ( %s ) has an apply periodic trigger dummy aura effect, but no handler for it.", m_spellProto->Id, m_spellProto->Name);
+			LOG_DETAIL("ERROR: Spell %u ( %s ) has an apply periodic trigger dummy aura effect, but no handler for it.", m_spellProto->Id, m_spellProto->Name);
 	}
 }
 
@@ -6111,8 +6111,7 @@ void Aura::SpellAuraAddPctMod(bool apply)
 			break;
 
 		default://Unknown modifier type
-			LOG_ERROR(
-			    "Unknown spell modifier type %u in spell %u.<<--report this line to the developer",
+			LOG_DETAIL("ERROR: Unknown spell modifier type %u in spell %u.<<--report this line to the developer",
 			    mod->m_miscValue, GetSpellId());
 			break;
 	}
@@ -6312,7 +6311,7 @@ void Aura::SpellAuraOverrideClassScripts(bool apply)
 					OverrideIdMap::iterator itermap = objmgr.mOverrideIdMap.find(mod->m_miscValue);
 					if(itermap == objmgr.mOverrideIdMap.end())
 					{
-						LOG_ERROR("Unable to find override with overrideid: %u", mod->m_miscValue);
+						LOG_DETAIL("ERROR: Unable to find override with overrideid: %u", mod->m_miscValue);
 						break;
 					}
 
@@ -6398,7 +6397,7 @@ void Aura::SpellAuraOverrideClassScripts(bool apply)
 			}
 			break;
 		default:
-			LOG_ERROR("Unknown override report to devs: %u", mod->m_miscValue);
+			LOG_DETAIL("ERROR: Unknown override report to devs: %u", mod->m_miscValue);
 	};
 }
 
@@ -7296,8 +7295,7 @@ void Aura::SpellAuraIncreaseHealingByAttribute(bool apply)
 		stat = mod->m_miscValue;
 	else
 	{
-		LOG_ERROR(
-		    "Aura::SpellAuraIncreaseHealingByAttribute::Unknown spell attribute type %u in spell %u.\n",
+		LOG_DETAIL("ERROR: Aura::SpellAuraIncreaseHealingByAttribute::Unknown spell attribute type %u in spell %u.\n",
 		    mod->m_miscValue, GetSpellId());
 		return;
 	}
@@ -7464,8 +7462,7 @@ void Aura::SpellAuraAddFlatModifier(bool apply)
 			break;
 
 		default://Unknown modifier type
-			LOG_ERROR(
-			    "Unknown spell modifier type %u in spell %u.<<--report this line to the developer\n",
+			LOG_DETAIL("ERROR: Unknown spell modifier type %u in spell %u.<<--report this line to the developer\n",
 			    mod->m_miscValue, GetSpellId());
 			break;
 	}

@@ -119,7 +119,7 @@ void LogonCommClientSocket::HandlePacket(WorldPacket & recvData)
 
 	if(recvData.GetOpcode() >= RMSG_COUNT || Handlers[recvData.GetOpcode()] == 0)
 	{
-		LOG_ERROR("Got unknown packet from logoncomm: %u", recvData.GetOpcode());
+		LOG_DETAIL("ERROR: Got unknown packet from logoncomm: %u", recvData.GetOpcode());
 		return;
 	}
 
@@ -350,7 +350,7 @@ void LogonCommClientSocket::CompressAndSend(ByteBuffer & uncompressed)
 
 	if(deflateInit(&stream, 1) != Z_OK)
 	{
-		LOG_ERROR("deflateInit failed.");
+		LOG_DETAIL("ERROR: deflateInit failed.");
 		return;
 	}
 
@@ -364,21 +364,21 @@ void LogonCommClientSocket::CompressAndSend(ByteBuffer & uncompressed)
 	if(deflate(&stream, Z_NO_FLUSH) != Z_OK ||
 	        stream.avail_in != 0)
 	{
-		LOG_ERROR("deflate failed.");
+		LOG_DETAIL("ERROR: deflate failed.");
 		return;
 	}
 
 	// finish the deflate
 	if(deflate(&stream, Z_FINISH) != Z_STREAM_END)
 	{
-		LOG_ERROR("deflate failed: did not end stream");
+		LOG_DETAIL("ERROR: deflate failed: did not end stream");
 		return;
 	}
 
 	// finish up
 	if(deflateEnd(&stream) != Z_OK)
 	{
-		LOG_ERROR("deflateEnd failed.");
+		LOG_DETAIL("ERROR: deflateEnd failed.");
 		return;
 	}
 

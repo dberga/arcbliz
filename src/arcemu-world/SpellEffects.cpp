@@ -839,7 +839,7 @@ void Spell::SpellEffectDummy(uint32 i) // Dummy(Scripted events)
 	if(sScriptMgr.CallScriptedDummySpell(m_spellInfo->Id, i, this))
 		return;
 
-	LOG_ERROR("Spell ID: %u ( %s ) has a dummy effect ( %u ) but no handler for it.", m_spellInfo->Id, m_spellInfo->Name, i);
+	LOG_DETAIL("ERROR: Spell ID: %u ( %s ) has a dummy effect ( %u ) but no handler for it.", m_spellInfo->Id, m_spellInfo->Name, i);
 }
 
 void Spell::SpellEffectTeleportUnits(uint32 i)    // Teleport Units
@@ -856,7 +856,7 @@ void Spell::SpellEffectTeleportUnits(uint32 i)    // Teleport Units
 
 	if(m_spellInfo->EffectCustomFlag == 0)
 	{
-		LOG_ERROR("Spell %u ( %s ) has a teleport effect, but has no teleport flag.", spellId, m_spellInfo->Name);
+		LOG_DETAIL("ERROR: Spell %u ( %s ) has a teleport effect, but has no teleport flag.", spellId, m_spellInfo->Name);
 		return;
 	}
 
@@ -867,7 +867,7 @@ void Spell::SpellEffectTeleportUnits(uint32 i)    // Teleport Units
 
 		if(TC == NULL)
 		{
-			LOG_ERROR("Spell %u ( %s ) has a TELEPORT TO COORDINATES effect, but has no coordinates to teleport to. ", spellId, m_spellInfo->Name);
+			LOG_DETAIL("ERROR: Spell %u ( %s ) has a TELEPORT TO COORDINATES effect, but has no coordinates to teleport to. ", spellId, m_spellInfo->Name);
 			return;
 		}
 
@@ -956,7 +956,7 @@ void Spell::SpellEffectTeleportUnits(uint32 i)    // Teleport Units
 	if(sScriptMgr.CallScriptedDummySpell(m_spellInfo->Id, i, this))
 		return;
 
-	LOG_ERROR("Unhandled Teleport effect %u for Spell %u ( %s ).", i, m_spellInfo->Id, m_spellInfo->Name);
+	LOG_DETAIL("ERROR: Unhandled Teleport effect %u for Spell %u ( %s ).", i, m_spellInfo->Id, m_spellInfo->Name);
 }
 
 void Spell::SpellEffectApplyAura(uint32 i)  // Apply Aura
@@ -1547,7 +1547,7 @@ void Spell::SpellEffectCreateItem(uint32 i)
 
 	if(playerTarget == NULL)
 	{
-		LOG_ERROR("Spell %u ( %s ) has a create item effect but no player target!", spellid, m_spellInfo->Name);
+		LOG_DETAIL("ERROR: Spell %u ( %s ) has a create item effect but no player target!", spellid, m_spellInfo->Name);
 		return;
 	}
 
@@ -1559,14 +1559,14 @@ void Spell::SpellEffectCreateItem(uint32 i)
 
 	if(itemid == 0)
 	{
-		LOG_ERROR("Spell %u ( %s ) has a create item effect but no itemid to add, Spell needs to be fixed!", spellid, m_spellInfo->Name);
+		LOG_DETAIL("ERROR: Spell %u ( %s ) has a create item effect but no itemid to add, Spell needs to be fixed!", spellid, m_spellInfo->Name);
 		return;
 	}
 
 	ItemPrototype* m_itemProto = ItemPrototypeStorage.LookupEntry(itemid);
 	if(m_itemProto == NULL)
 	{
-		LOG_ERROR("Spell %u ( %s ) has a create item effect but the itemid is invalid!", spellid, m_spellInfo->Name);
+		LOG_DETAIL("ERROR: Spell %u ( %s ) has a create item effect but the itemid is invalid!", spellid, m_spellInfo->Name);
 		return;
 	}
 
@@ -1598,7 +1598,7 @@ void Spell::SpellEffectCreateItem(uint32 i)
 
 	if(count <= 0)
 	{
-		LOG_ERROR("Spell %u ( %s ) has a create item effect but no item count to add, Spell needs to be fixed! Count overriden to 1.", spellid, m_spellInfo->Name);
+		LOG_DETAIL("ERROR: Spell %u ( %s ) has a create item effect but no item count to add, Spell needs to be fixed! Count overriden to 1.", spellid, m_spellInfo->Name);
 		count = 1;
 	}
 
@@ -1732,7 +1732,7 @@ void Spell::SpellEffectCreateItem(uint32 i)
 				}
 				else
 				{
-					LOG_ERROR("Spell %u ( %s ) Effect %u tried to teach a non-existing Spell %u in %s:%u", spellid, m_spellInfo->Name, i, learn_spell, __FILE__, __LINE__);
+					LOG_DETAIL("ERROR: Spell %u ( %s ) Effect %u tried to teach a non-existing Spell %u in %s:%u", spellid, m_spellInfo->Name, i, learn_spell, __FILE__, __LINE__);
 				}
 			}
 		}
@@ -1771,7 +1771,7 @@ void Spell::SpellEffectCreateItem(uint32 i)
 				}
 				else
 				{
-					LOG_ERROR("Spell %u ( %s ) Effect %u tried to teach a non-existing Spell %u in %s:%u", spellid, m_spellInfo->Name, i, learn_spell, __FILE__, __LINE__);
+					LOG_DETAIL("ERROR: Spell %u ( %s ) Effect %u tried to teach a non-existing Spell %u in %s:%u", spellid, m_spellInfo->Name, i, learn_spell, __FILE__, __LINE__);
 				}
 			}
 		}
@@ -2004,7 +2004,7 @@ void Spell::SpellEffectSummon(uint32 i)
 	SummonPropertiesEntry* spe = dbcSummonProperties.LookupEntry(summonpropid);
 	if(spe == NULL)
 	{
-		LOG_ERROR("No SummonPropertiesEntry for Spell %u ( %s )", m_spellInfo->Id, m_spellInfo->Name);
+		LOG_DETAIL("ERROR: No SummonPropertiesEntry for Spell %u ( %s )", m_spellInfo->Id, m_spellInfo->Name);
 		return;
 	}
 
@@ -2015,7 +2015,7 @@ void Spell::SpellEffectSummon(uint32 i)
 
 	if((ci == NULL) || (cp == NULL))
 	{
-		LOG_ERROR("Spell %u ( %s ) tried to summon creature %u without database data", m_spellInfo->Id, m_spellInfo->Name, entry);
+		LOG_DETAIL("ERROR: Spell %u ( %s ) tried to summon creature %u without database data", m_spellInfo->Id, m_spellInfo->Name, entry);
 		return;
 	}
 
@@ -2105,7 +2105,7 @@ void Spell::SpellEffectSummon(uint32 i)
 			return;
 	}
 
-	LOG_ERROR("Unknown summon type in summon property %u in spell %u %s", summonpropid, m_spellInfo->Id, m_spellInfo->Name);
+	LOG_DETAIL("ERROR: Unknown summon type in summon property %u in spell %u %s", summonpropid, m_spellInfo->Id, m_spellInfo->Name);
 }
 
 void Spell::SpellEffectSummonWild(uint32 i, SummonPropertiesEntry* spe, CreatureProto* proto, LocationVector & v)
@@ -2484,14 +2484,14 @@ void Spell::SpellEffectTriggerMissile(uint32 i) // Trigger Missile
 	uint32 spellid = GetProto()->EffectTriggerSpell[i];
 	if(spellid == 0)
 	{
-		LOG_ERROR("Spell %u ( %s ) has a trigger missle effect ( %u ) but no trigger spell ID. Spell needs fixing.", m_spellInfo->Id, m_spellInfo->Name, i);
+		LOG_DETAIL("ERROR: Spell %u ( %s ) has a trigger missle effect ( %u ) but no trigger spell ID. Spell needs fixing.", m_spellInfo->Id, m_spellInfo->Name, i);
 		return;
 	}
 
 	SpellEntry* spInfo = dbcSpell.LookupEntryForced(spellid);
 	if(spInfo == NULL)
 	{
-		LOG_ERROR("Spell %u ( %s ) has a trigger missle effect ( %u ) but has an invalid trigger spell ID. Spell needs fixing.", m_spellInfo->Id, m_spellInfo->Name, i);
+		LOG_DETAIL("ERROR: Spell %u ( %s ) has a trigger missle effect ( %u ) but has an invalid trigger spell ID. Spell needs fixing.", m_spellInfo->Id, m_spellInfo->Name, i);
 		return;
 	}
 
@@ -3359,7 +3359,7 @@ void Spell::SpellEffectEnchantItem(uint32 i) // Enchant Item Permanent
 
 	if(!Enchantment)
 	{
-		LOG_ERROR("Invalid enchantment entry %u for Spell %u", GetProto()->EffectMiscValue[ i ], GetProto()->Id);
+		LOG_DETAIL("ERROR: Invalid enchantment entry %u for Spell %u", GetProto()->EffectMiscValue[ i ], GetProto()->Id);
 		return;
 	}
 
@@ -3390,20 +3390,20 @@ void Spell::SpellEffectEnchantItemTemporary(uint32 i)  // Enchant Item Temporary
 
 	if(Duration == 0)
 	{
-		LOG_ERROR("Spell %u ( %s ) has no enchantment duration. Spell needs to be fixed!", m_spellInfo->Id, m_spellInfo->Name);
+		LOG_DETAIL("ERROR: Spell %u ( %s ) has no enchantment duration. Spell needs to be fixed!", m_spellInfo->Id, m_spellInfo->Name);
 		return;
 	}
 
 	if(EnchantmentID == 0)
 	{
-		LOG_ERROR("Spell %u ( %s ) has no enchantment ID. Spell needs to be fixed!", m_spellInfo->Id, m_spellInfo->Name);
+		LOG_DETAIL("ERROR: Spell %u ( %s ) has no enchantment ID. Spell needs to be fixed!", m_spellInfo->Id, m_spellInfo->Name);
 		return;
 	}
 
 	EnchantEntry* Enchantment = dbcEnchant.LookupEntryForced(EnchantmentID);
 	if(Enchantment == NULL)
 	{
-		LOG_ERROR("Invalid enchantment entry %u for Spell %u", EnchantmentID, GetProto()->Id);
+		LOG_DETAIL("ERROR: Invalid enchantment entry %u for Spell %u", EnchantmentID, GetProto()->Id);
 		return;
 	}
 
@@ -3601,7 +3601,7 @@ void Spell::SpellEffectSendEvent(uint32 i) //Send Event
 	if(sScriptMgr.HandleScriptedSpellEffect(m_spellInfo->Id, i, this))
 		return;
 
-	LOG_ERROR("Spell ID: %u ( %s ) has a scripted effect ( %u ) but no handler for it.", m_spellInfo->Id, m_spellInfo->Name, i);
+	LOG_DETAIL("ERROR: Spell ID: %u ( %s ) has a scripted effect ( %u ) but no handler for it.", m_spellInfo->Id, m_spellInfo->Name, i);
 
 }
 
@@ -3656,7 +3656,7 @@ void Spell::SpellEffectClearQuest(uint32 i)
 {
 	if(playerTarget == NULL)
 	{
-		LOG_ERROR("Spell %u ( %s ) was not casted on Player, but Spell requires Player to be a target.", m_spellInfo->Id, m_spellInfo->Name);
+		LOG_DETAIL("ERROR: Spell %u ( %s ) was not casted on Player, but Spell requires Player to be a target.", m_spellInfo->Id, m_spellInfo->Name);
 		return;
 	}
 
@@ -3918,7 +3918,7 @@ void Spell::SpellEffectScriptEffect(uint32 i) // Script Effect
 	if(sScriptMgr.HandleScriptedSpellEffect(m_spellInfo->Id, i, this))
 		return;
 
-	LOG_ERROR("Spell ID: %u ( %s ) has a scripted effect ( %u ) but no handler for it.", m_spellInfo->Id, m_spellInfo->Name, i);
+	LOG_DETAIL("ERROR: Spell ID: %u ( %s ) has a scripted effect ( %u ) but no handler for it.", m_spellInfo->Id, m_spellInfo->Name, i);
 }
 
 void Spell::SpellEffectSanctuary(uint32 i) // Stop all attacks made to you
@@ -4046,7 +4046,7 @@ void Spell::SpellEffectActivateObject(uint32 i) // Activate Object
 
 	if(!gameObjTarget)
 	{
-		LOG_ERROR("Spell %u ( %s ) effect %u not handled because no target was found. ", m_spellInfo->Id, m_spellInfo->Name, i);
+		LOG_DETAIL("ERROR: Spell %u ( %s ) effect %u not handled because no target was found. ", m_spellInfo->Id, m_spellInfo->Name, i);
 		return;
 	}
 
@@ -4106,7 +4106,7 @@ void Spell::SpellEffectEnchantHeldItem(uint32 i)
 
 	if(!Enchantment)
 	{
-		LOG_ERROR("Invalid enchantment entry %u for Spell %u", GetProto()->EffectMiscValue[ i ], GetProto()->Id);
+		LOG_DETAIL("ERROR: Invalid enchantment entry %u for Spell %u", GetProto()->EffectMiscValue[ i ], GetProto()->Id);
 		return;
 	}
 
@@ -5079,7 +5079,7 @@ void Spell::SpellEffectPlayMusic(uint32 i)
 
 	if(soundid == 0)
 	{
-		LOG_ERROR("Spell %u ( %s ) has no sound ID to play. Spell needs fixing!", m_spellInfo->Id, m_spellInfo->Name);
+		LOG_DETAIL("ERROR: Spell %u ( %s ) has no sound ID to play. Spell needs fixing!", m_spellInfo->Id, m_spellInfo->Name);
 		return;
 	}
 
@@ -5111,7 +5111,7 @@ void Spell::SpellEffectRestorePowerPct(uint32 i)
 	uint32 power_type = GetProto()->EffectMiscValue[i];
 	if(power_type > POWER_TYPE_HAPPINESS)
 	{
-		LOG_ERROR("Unhandled power type %u in %s, report this line to devs.", power_type, __FUNCTION__);
+		LOG_DETAIL("ERROR: Unhandled power type %u in %s, report this line to devs.", power_type, __FUNCTION__);
 		return;
 	}
 
@@ -5205,7 +5205,7 @@ void Spell::SpellEffectEnchantItemPrismatic(uint32 i)
 
 	if(!Enchantment)
 	{
-		LOG_ERROR("Invalid enchantment entry %u for Spell %u", GetProto()->EffectMiscValue[ i ], GetProto()->Id);
+		LOG_DETAIL("ERROR: Invalid enchantment entry %u for Spell %u", GetProto()->EffectMiscValue[ i ], GetProto()->Id);
 		return;
 	}
 

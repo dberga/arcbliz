@@ -851,7 +851,7 @@ void IsleOfConquest::AssaultControlPoint( Player *player, uint32 id ){
 	uint32 team = player->GetTeam();
 
 	if( state > IOC_SPAWN_TYPE_HORDE_CONTROLLED ){
-		LOG_ERROR( "IOC control point %u is in an invalid state, cannot be assaulted.", id );
+		LOG_DETAIL("ERROR: IOC control point %u is in an invalid state, cannot be assaulted.", id );
 		return;
 	}
 
@@ -919,7 +919,7 @@ void IsleOfConquest::CaptureControlPoint( uint32 id ){
 			break;
 
 		default:
-			LOG_ERROR( "IOC control point %u is not in assaulted state, so it cannot be captured.", id );
+			LOG_DETAIL("ERROR: IOC control point %u is not in assaulted state, so it cannot be captured.", id );
 			return;
 			break;
 	}

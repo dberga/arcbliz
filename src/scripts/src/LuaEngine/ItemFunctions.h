@@ -53,7 +53,7 @@ namespace luaItem
 		uint32 boxmoney = luaL_optint(L, 6, 0);
 		
 		if( Menu == NULL ){
-			LOG_ERROR( "There is no menu to add items to!" );
+			LOG_DETAIL("ERROR: There is no menu to add items to!" );
 			return 0;
 		}
 
@@ -67,7 +67,7 @@ namespace luaItem
 		Player* plr = CHECK_PLAYER(L, 1);
 		
 		if( Menu == NULL ){
-			LOG_ERROR( "There is no menu to send!" );
+			LOG_DETAIL("ERROR: There is no menu to send!" );
 			return 0;
 		}
 
@@ -81,7 +81,7 @@ namespace luaItem
 		Player* plr = CHECK_PLAYER(L, 1);
 		
 		if( Menu == NULL ){
-			LOG_ERROR( "There is no menu to complete!" );
+			LOG_DETAIL("ERROR: There is no menu to complete!" );
 			return 0;
 		}
 

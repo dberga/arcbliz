@@ -65,7 +65,7 @@ WorldSession::~WorldSession()
 
 	if(_player)
 	{
-		LOG_ERROR("warning: logged out player in worldsession destructor");
+		LOG_DETAIL("ERROR: warning: logged out player in worldsession destructor");
 		LogoutPlayer(true);
 	}
 
