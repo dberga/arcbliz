@@ -1,4 +1,4 @@
-ArcBliz v1.1 - ArcEmu Fork
+ArcBliz v1.2 - ArcEmu Fork
 ======
 
 # Compiling binaries
@@ -18,11 +18,9 @@ This prevents seeing errors on the log, to see the errors, just increase the Log
 
 # Demo
 
-Post on ragezone [here][3]
-Arcbliz v1.1 release [here][4]
+Post on ragezone [here][3] (with download)
 
 [1]: http://rawgit.com/dberga/arcemu/master/Compiling/Compiling1.htm
 [2]: http://rawgit.com/dberga/arcemu/master/Compiling/Compiling2.htm
 [3]: http://forum.ragezone.com/f647/arcbliz-repack-3-3-5-a-997075/
-[4]: https://mega.co.nz/#!IUU3iQiT!zHzES_lBUVmNAve9UlCTvowVdkXi3KGtqggwJ5ws1Gs
 
