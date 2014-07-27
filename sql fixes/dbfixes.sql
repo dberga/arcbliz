@@ -800,7 +800,11 @@ update creature_names set waypointid = 0 where entry = 29190 or entry = 29190 or
 
 ###UNDEAD CHAIN
 #Warlocks must not start with spell imp (Quest Piercing the veil gives the spell)
-DELETE FROM playercreateinfo_spells WHERE spellid = 688 and indexid = 38 or indexid = 39 or indexid = 40 or indexid = 41 or indexid = 55;
+DELETE FROM playercreateinfo_spells WHERE spellid = 688 and indexid = 38;
+DELETE FROM playercreateinfo_spells WHERE spellid = 688 and indexid = 39;
+DELETE FROM playercreateinfo_spells WHERE spellid = 688 and indexid = 40;
+DELETE FROM playercreateinfo_spells WHERE spellid = 688 and indexid = 41;
+DELETE FROM playercreateinfo_spells WHERE spellid = 688 and indexid = 55;
 #nd:quest Marla's Last wish poi
 #npc "Deathguard dillinger" & "Deathguard burgess" are a quest giver but doesn't give quest
 update creature_names set info_str = "Directions" where entry = 1746 or entry = 1496;
